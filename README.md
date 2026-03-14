@@ -40,6 +40,9 @@ pnpm start
 
 # Lint
 pnpm lint
+
+# Type check
+pnpm type-check
 ```
 
 ## Project Structure
@@ -52,6 +55,15 @@ pnpm lint
 │       ├── globals.css
 │       ├── layout.tsx
 │       └── page.tsx
+├── .github/
+│   ├── workflows/       # CI pipeline
+│   ├── agents/          # Copilot agent definitions (speckit + codereview)
+│   ├── chatmodes/       # VS Code chat modes
+│   ├── context/         # Code review rule sets
+│   └── copilot-instructions.md
+├── .specify/            # Spec-kit workflow (constitution, templates, scripts)
+├── specs/               # Per-feature spec and plan documents
+├── introduction/        # Project plan and notes
 ├── next.config.ts
 ├── tsconfig.json
 └── eslint.config.mjs
