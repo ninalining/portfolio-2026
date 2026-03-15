@@ -5,7 +5,10 @@
     "skills": "Kompetenser",
     "projects": "Projekt",
     "contact": "Kontakt",
-    "switchLanguage": "EN"
+    "switchLanguage": "EN",
+    "openMenu": "Öppna navigationsmenyn",
+    "closeMenu": "Stäng navigationsmenyn",
+    "languageMenu": "Välj språk"
   },
   "hero": {
     "greeting": "Hej, jag heter",

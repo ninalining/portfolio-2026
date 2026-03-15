@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
-import { useTranslations } from "next-intl";
-import { defaultLocale, isSupportedLocale, ogLocaleMap } from "@/i18n/routing";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { defaultLocale, isSupportedLocale, locales, ogLocaleMap } from "@/i18n/routing";
 import type { LocalePageProps } from "@/types/locale";
+
+export function generateStaticParams(): { locale: string }[] {
+  return locales.map((locale) => ({ locale }));
+}
 
 export async function generateMetadata({ params }: LocalePageProps): Promise<Metadata> {
   const { locale } = await params;
@@ -14,8 +18,11 @@ export async function generateMetadata({ params }: LocalePageProps): Promise<Met
   };
 }
 
-export default function Home() {
-  const t = useTranslations("hero");
+export default async function Home({ params }: LocalePageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations({ locale, namespace: "hero" });
 
   return (
     <main>

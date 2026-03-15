@@ -5,7 +5,10 @@
     "skills": "Skills",
     "projects": "Projects",
     "contact": "Contact",
-    "switchLanguage": "SV"
+    "switchLanguage": "SV",
+    "openMenu": "Open navigation menu",
+    "closeMenu": "Close navigation menu",
+    "languageMenu": "Select language"
   },
   "hero": {
     "greeting": "Hi, I'm",
