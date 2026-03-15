@@ -85,12 +85,12 @@
   --color-switch-background: var(--switch-background);
   --color-ring: var(--ring);
 
-  /* Brand tokens as Tailwind classes */
-  --color-mint: var(--color-mint);
-  --color-mint-light: var(--color-mint-light);
-  --color-cream: var(--color-cream);
-  --color-yellow: var(--color-yellow);
-  --color-lavender: var(--color-lavender);
+  /* Brand tokens as Tailwind classes (bg-cream, text-mint, etc.) */
+  --color-mint: #8BC6BC;
+  --color-mint-light: #A8D5BA;
+  --color-cream: #FFFEF0;
+  --color-yellow: #F2DD72;
+  --color-lavender: #C5B9D6;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -112,6 +112,7 @@
 
   html {
     font-size: var(--font-size);
+    scroll-behavior: smooth;
   }
 
   h1 {

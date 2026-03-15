@@ -1,0 +1,11 @@
+<svg width="64" height="64" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="NL monogram logo with circle background">
+  <circle cx="40" cy="40" r="40" fill="#111827"/>
+  <!-- Bar 1: full-height (N left stroke) -->
+  <rect x="12" y="14" width="10" height="52" fill="white"/>
+  <!-- Bar 2: shorter, starts ~37% down (N right stroke) -->
+  <rect x="26" y="34" width="10" height="32" fill="white"/>
+  <!-- Bar 3: full-height (L vertical stroke) -->
+  <rect x="46" y="14" width="10" height="52" fill="white"/>
+  <!-- L horizontal foot -->
+  <rect x="46" y="56" width="22" height="10" fill="white"/>
+</svg>
