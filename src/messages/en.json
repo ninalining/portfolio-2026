@@ -1,0 +1,58 @@
+{
+  "navigation": {
+    "about": "About",
+    "experience": "Experience",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact",
+    "switchLanguage": "SV"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "Nina Li",
+    "title": "Senior Full-Stack Engineer",
+    "description": "I build performant, accessible web applications with a focus on clean architecture and great user experience.",
+    "ctaProjects": "View Projects",
+    "ctaContact": "Get in Touch"
+  },
+  "about": {
+    "sectionTitle": "About Me",
+    "bio1": "[Placeholder: personal narrative about your background and passion]",
+    "bio2": "[Placeholder: your journey into tech and what drives you]",
+    "feature1Title": "Web Development",
+    "feature1Desc": "Building responsive, modern web applications with the latest technologies.",
+    "feature2Title": "UI/UX Design",
+    "feature2Desc": "Designing intuitive and visually engaging user interfaces.",
+    "feature3Title": "Performance",
+    "feature3Desc": "Focused on Core Web Vitals and delivering fast, reliable experiences."
+  },
+  "experience": {
+    "sectionTitle": "Experience"
+  },
+  "skills": {
+    "sectionTitle": "Skills",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Tools & Methods"
+  },
+  "projects": {
+    "sectionTitle": "Projects",
+    "sectionSubtitle": "A selection of projects I've worked on — each representing a unique challenge and solution.",
+    "viewProject": "View Project",
+    "viewSource": "Source Code"
+  },
+  "contact": {
+    "sectionTitle": "Contact",
+    "sectionSubtitle": "Have a project or idea? I'd love to hear from you.",
+    "nameLabel": "Name",
+    "namePlaceholder": "Your name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "your@email.com",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell me about your project...",
+    "submit": "Send Message"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  }
+}
