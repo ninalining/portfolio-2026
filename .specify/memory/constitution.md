@@ -83,6 +83,9 @@ violation creates reputational and legal risk.
 - **Package manager**: pnpm only — never use npm or yarn commands
 - **Rendering**: Prefer Server Components; use Client Components only when
   interactivity requires it
+- **Type colocation**: All `type` and `interface` definitions MUST live in
+  dedicated `.ts` files under `src/types/`. `.tsx` component files MUST only
+  import types — never define them inline.
 
 ## Development Workflow
 
@@ -113,4 +116,4 @@ All agents (Spec, Plan, Implement, Analyze) MUST read this constitution before
 operating. Complexity MUST be justified against the principles. When in doubt,
 the simpler, more maintainable solution wins.
 
-**Version**: 1.0.0 | **Ratified**: 2026-03-14 | **Last Amended**: 2026-03-14
+**Version**: 1.1.0 | **Ratified**: 2026-03-14 | **Last Amended**: 2026-03-15
