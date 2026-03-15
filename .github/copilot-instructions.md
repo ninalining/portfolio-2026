@@ -24,6 +24,7 @@
 - Preserve existing style and naming conventions.
 - Avoid unrelated refactors.
 - Ensure code is lint-clean before finishing.
+- **Type colocation**: All `type` and `interface` definitions go in dedicated `.ts` files under `src/types/`. `.tsx` files only import types — never define them inline.
 
 ## Accessibility and UX
 - **WCAG AA baseline**: Use semantic HTML, keyboard accessibility, and ARIA labels where necessary.

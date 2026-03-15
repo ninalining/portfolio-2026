@@ -40,3 +40,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# MCP server config (contains API tokens)
+.vscode/mcp.json
+
+# Spec-driven workflow artifacts (local planning docs, not for CI)
+specs/
