@@ -46,7 +46,8 @@
     "sectionTitle": "Projects",
     "sectionSubtitle": "A selection of projects I've worked on — each representing a unique challenge and solution.",
     "viewProject": "View Project",
-    "viewSource": "Source Code"
+    "viewSource": "Source Code",
+    "technologiesUsed": "Technologies used"
   },
   "contact": {
     "sectionTitle": "Contact",
