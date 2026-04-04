@@ -38,9 +38,17 @@
   },
   "skills": {
     "sectionTitle": "Skills",
-    "frontend": "Frontend",
-    "backend": "Backend",
-    "tools": "Tools & Methods"
+    "sectionSubtitle": "Technologies and tools I use to create digital solutions.",
+    "frontend": "Frontend Development",
+    "backend": "Backend Development",
+    "tools": "Tools & Workflow",
+    "frontendDesc": "Building beautiful and responsive user interfaces",
+    "backendDesc": "Creating robust server-side applications",
+    "toolsDesc": "Modern development tools and practices",
+    "statYears": "Years of Experience",
+    "statProjects": "Projects Delivered",
+    "statLearning": "Always Learning",
+    "moreLabel": "And many more..."
   },
   "projects": {
     "sectionTitle": "Projects",
