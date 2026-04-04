@@ -46,7 +46,8 @@
     "sectionTitle": "Projekt",
     "sectionSubtitle": "Ett urval av projekt jag har arbetat med — varje projekt representerar en unik utmaning och lösning.",
     "viewProject": "Se projekt",
-    "viewSource": "Källkod"
+    "viewSource": "Källkod",
+    "technologiesUsed": "Använda teknologier"
   },
   "contact": {
     "sectionTitle": "Kontakta Mig",
