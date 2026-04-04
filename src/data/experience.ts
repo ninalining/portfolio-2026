@@ -13,7 +13,14 @@ export const experiences: Experience[] = [
       'Led a squad of 4 engineers through a design-system migration from inline styles to Tailwind CSS v4, eliminating 12k lines of legacy CSS.',
       'Established CI/CD pipelines with GitHub Actions — lint, type-check, unit test, and Playwright E2E gates on every PR, reducing production incidents by 60%.',
     ],
-    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Vercel', 'GitHub Actions'],
+    technologies: [
+      'Next.js',
+      'TypeScript',
+      'Tailwind CSS',
+      'PostgreSQL',
+      'Vercel',
+      'GitHub Actions',
+    ],
   },
   {
     id: 'startup-ab-fullstack-2021',

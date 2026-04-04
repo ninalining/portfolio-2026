@@ -1,27 +1,27 @@
-import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
-import { defaultLocale, isSupportedLocale, locales, ogLocaleMap } from "@/i18n/routing";
-import type { LocalePageProps } from "@/types/locale";
-import { HeroSection } from "@/components/sections/HeroSection";
+import type { Metadata } from 'next'
+import { setRequestLocale } from 'next-intl/server'
+import { defaultLocale, isSupportedLocale, locales, ogLocaleMap } from '@/i18n/routing'
+import type { LocalePageProps } from '@/types/locale'
+import { HeroSection } from '@/components/sections/HeroSection'
 
 export function generateStaticParams(): { locale: string }[] {
-  return locales.map((locale) => ({ locale }));
+  return locales.map((locale) => ({ locale }))
 }
 
 export async function generateMetadata({ params }: LocalePageProps): Promise<Metadata> {
-  const { locale } = await params;
-  const resolvedLocale = isSupportedLocale(locale) ? locale : defaultLocale;
+  const { locale } = await params
+  const resolvedLocale = isSupportedLocale(locale) ? locale : defaultLocale
 
   return {
     openGraph: {
       locale: ogLocaleMap[resolvedLocale],
     },
-  };
+  }
 }
 
 export default async function Home({ params }: LocalePageProps) {
-  const { locale } = await params;
-  setRequestLocale(locale);
+  const { locale } = await params
+  setRequestLocale(locale)
 
   return (
     <main>
@@ -52,5 +52,5 @@ export default async function Home({ params }: LocalePageProps) {
         {/* TODO: Contact section */}
       </section>
     </main>
-  );
+  )
 }

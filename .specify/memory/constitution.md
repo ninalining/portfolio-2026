@@ -105,6 +105,7 @@ This constitution supersedes all other guidelines including `copilot-instruction
 where they conflict. In case of conflict, the constitution takes precedence.
 
 **Amendment procedure**:
+
 1. Propose the change with rationale
 2. Identify which principle(s) are affected and why the amendment is necessary
 3. Increment version: MAJOR for removals/redefinitions, MINOR for additions,

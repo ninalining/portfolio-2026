@@ -14,8 +14,14 @@ test.describe('Hero section', () => {
 
   test('CTA buttons link to correct sections', async ({ page }) => {
     const hero = page.locator('#hero')
-    await expect(hero.getByRole('link', { name: /view projects/i })).toHaveAttribute('href', '#projects')
-    await expect(hero.getByRole('link', { name: /get in touch/i })).toHaveAttribute('href', '#contact')
+    await expect(hero.getByRole('link', { name: /view projects/i })).toHaveAttribute(
+      'href',
+      '#projects',
+    )
+    await expect(hero.getByRole('link', { name: /get in touch/i })).toHaveAttribute(
+      'href',
+      '#contact',
+    )
   })
 
   test('social links are present', async ({ page }) => {

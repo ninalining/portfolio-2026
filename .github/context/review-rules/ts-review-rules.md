@@ -24,6 +24,7 @@ Rules for TypeScript quality and type safety.
 ## False Positive Suppression
 
 Do **NOT** flag:
+
 - `any` with an explicit `// typed as any because...` comment
 - Type assertions in test/spec files
 - `_`-prefixed variables (intentionally unused)

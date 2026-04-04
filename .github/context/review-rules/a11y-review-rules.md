@@ -35,6 +35,7 @@ Rules for WCAG 2.1 AA compliance. All UI changes must be checked against these.
 ## False Positive Suppression
 
 Do **NOT** flag:
+
 - `alt=""` on purely decorative images — this is the correct WCAG pattern
 - `tabIndex={-1}` used intentionally to programmatically focus an element
 - `aria-hidden="true"` on icon elements that are adjacent to visible labelled text

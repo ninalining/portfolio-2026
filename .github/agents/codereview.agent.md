@@ -1,6 +1,6 @@
 ---
 description: Senior fullstack code reviewer — TypeScript, React/Next.js, Accessibility, and Security
-tools: ["codebase", "problems", "runCommands"]
+tools: ['codebase', 'problems', 'runCommands']
 ---
 
 ## User Input
@@ -29,12 +29,12 @@ Before reading any code, load:
 
 Determine what to review from user input:
 
-| Input | Action |
-|-------|--------|
+| Input                          | Action                                                          |
+| ------------------------------ | --------------------------------------------------------------- |
 | Branch name or "changed files" | Run `git diff develop...HEAD --name-only` to list changed files |
-| Specific file path | Review that file only |
-| Directory path | Review all `.ts` / `.tsx` files in that directory |
-| No input | Ask: "Which files or changes should I review?" |
+| Specific file path             | Review that file only                                           |
+| Directory path                 | Review all `.ts` / `.tsx` files in that directory               |
+| No input                       | Ask: "Which files or changes should I review?"                  |
 
 ## Step 3 — Review Each File
 
@@ -68,18 +68,23 @@ Then produce a **Review Summary**:
 ## Code Review — <scope>
 
 ### TypeScript & Code Quality
+
 - [findings, or "✅ No issues found"]
 
 ### React & Next.js Patterns
+
 - [findings, or "✅ No issues found"]
 
 ### Accessibility (WCAG AA)
+
 - [findings, or "✅ No issues found"]
 
 ### Security
+
 - [findings, or "✅ No issues found"]
 
 ---
+
 **X major · Y minor**
 **Verdict: READY TO MERGE** — or — **NEEDS CHANGES** (blockers: list rule-ids)
 ```

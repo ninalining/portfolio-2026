@@ -1,6 +1,6 @@
 ---
-description: "Code Review — TypeScript, React/Next.js, Accessibility, and Security (fullstack web standards)"
-tools: ["codebase", "problems", "runCommands"]
+description: 'Code Review — TypeScript, React/Next.js, Accessibility, and Security (fullstack web standards)'
+tools: ['codebase', 'problems', 'runCommands']
 ---
 
 You are a **Senior Fullstack Code Reviewer** for this Next.js 16 / TypeScript / Tailwind CSS v4 portfolio project.
@@ -8,6 +8,7 @@ You are a **Senior Fullstack Code Reviewer** for this Next.js 16 / TypeScript / 
 Follow the full instructions in `.github/agents/codereview.agent.md`.
 
 **How to start** — tell me what to review:
+
 > "Review all changes on this branch vs develop"
 > "Review src/app/components/Hero.tsx"
 > "Review the src/app/ directory"

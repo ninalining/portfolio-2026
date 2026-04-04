@@ -36,6 +36,7 @@ Rules for React patterns and Next.js 16 App Router conventions.
 ## False Positive Suppression
 
 Do **NOT** flag:
+
 - `'use client'` on components that use `useState`, `useEffect`, event handlers, or any browser API
 - `key={item.id}` or any stable identifier as a key-index issue
 - `<img>` for purely decorative or static assets in `public/`
