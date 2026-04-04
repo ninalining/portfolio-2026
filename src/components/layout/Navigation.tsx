@@ -35,6 +35,7 @@ export function Navigation() {
   const router = useRouter()
   const pathname = usePathname()
 
+  const [isScrolled, setIsScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [langOpen, setLangOpen] = useState(false)
 
@@ -52,6 +53,13 @@ export function Navigation() {
     setLangOpen(false)
     router.replace(pathname, { locale: targetLocale as 'en' | 'sv' })
   }, [router, pathname])
+
+  // Scroll detection
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   // Scroll lock + focus trap when mobile menu opens
   useEffect(() => {
@@ -122,11 +130,16 @@ export function Navigation() {
   return (
     <header
       data-testid="navigation"
-      className="sticky top-0 z-50 w-full border-b border-border/40 backdrop-blur-md bg-cream/80"
+      className={cn(
+        'sticky top-0 z-50 w-full transition-all duration-300',
+        isScrolled
+          ? 'bg-cream/95 backdrop-blur-md border-b border-border/40 shadow-sm'
+          : 'bg-transparent border-b border-transparent'
+      )}
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="#hero" aria-label="Nina Li — back to top" className="flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] rounded-sm">
+        <a href="#hero" aria-label="Nina Li — back to top" className="flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm">
           <Image src="/logo-mark.svg" width={LOGO_SIZE} height={LOGO_SIZE} alt="NL logo" />
         </a>
 
@@ -136,7 +149,7 @@ export function Navigation() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] rounded-sm"
+              className="text-xl font-medium text-foreground/80 hover:text-foreground hover:bg-primary/10 px-4 py-2 rounded-2xl transition-all underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {t(link.labelKey as Parameters<typeof t>[0])}
             </a>
@@ -150,7 +163,7 @@ export function Navigation() {
               aria-expanded={langOpen}
               aria-haspopup="menu"
               onClick={() => setLangOpen((o) => !o)}
-              className="flex items-center gap-1 text-sm font-medium text-foreground/80 hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] rounded-sm p-1"
+              className="flex items-center gap-1 text-xl font-medium text-foreground/80 hover:text-foreground hover:bg-primary/10 px-3 py-2 rounded-2xl transition-all underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <Globe size={ICON_SIZE_SM} aria-hidden="true" />
               <span className="uppercase">{locale}</span>
@@ -159,7 +172,7 @@ export function Navigation() {
             {langOpen && (
               <div
                 role="menu"
-                className="absolute right-0 mt-2 w-24 bg-card rounded-[var(--radius)] shadow-lg border border-border py-1"
+                className="absolute right-0 mt-2 w-24 bg-card rounded-(--radius) shadow-lg border border-border py-1"
               >
                 {LOCALES.map(({ code, label }) => (
                   <button
@@ -185,7 +198,12 @@ export function Navigation() {
           aria-label={t('openMenu')}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen(true)}
-          className="md:hidden p-2 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] rounded-sm"
+          className={cn(
+            'md:hidden w-10 h-10 rounded-2xl flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+            isScrolled
+              ? 'bg-primary text-white'
+              : 'bg-white text-foreground shadow-md'
+          )}
         >
           <Menu size={ICON_SIZE_MD} aria-hidden="true" />
         </button>
@@ -205,7 +223,7 @@ export function Navigation() {
             <button
               aria-label={t('closeMenu')}
               onClick={closeMenu}
-              className="p-2 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] rounded-sm"
+              className="p-2 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
             >
               <X size={ICON_SIZE_MD} aria-hidden="true" />
             </button>
@@ -217,7 +235,7 @@ export function Navigation() {
                 key={link.href}
                 href={link.href}
                 onClick={closeMenu}
-                className="text-2xl font-medium text-foreground py-3 border-b border-border/20 hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]"
+                className="text-2xl font-medium text-foreground py-3 border-b border-border/20 hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {t(link.labelKey as Parameters<typeof t>[0])}
               </a>
@@ -231,7 +249,7 @@ export function Navigation() {
                 key={code}
                 onClick={() => { switchLocale(code); closeMenu() }}
                 className={cn(
-                  'text-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] rounded-sm',
+                  'text-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm',
                   locale === code ? 'text-primary font-semibold' : 'text-foreground/60 hover:text-foreground'
                 )}
               >
