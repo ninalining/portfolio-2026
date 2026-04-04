@@ -4,6 +4,7 @@ import { defaultLocale, isSupportedLocale, locales, ogLocaleMap } from '@/i18n/r
 import type { LocalePageProps } from '@/types/locale'
 import { HeroSection } from '@/components/sections/HeroSection'
 import { AboutSection } from '@/components/sections/AboutSection'
+import { SkillsSection } from '@/components/sections/SkillsSection'
 import { ProjectsSection } from '@/components/sections/ProjectsSection'
 
 export function generateStaticParams(): { locale: string }[] {
@@ -37,13 +38,11 @@ export default async function Home({ params }: LocalePageProps) {
         {/* TODO: Experience section */}
       </section>
 
-      {/* Skills */}
-      <section id="skills" aria-label="Skills">
-        {/* TODO: Skills section */}
-      </section>
-
       {/* Projects */}
       <ProjectsSection locale={locale} />
+
+      {/* Skills */}
+      <SkillsSection locale={locale} />
 
       {/* Contact */}
       <section id="contact" aria-label="Contact">
