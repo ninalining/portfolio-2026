@@ -11,6 +11,7 @@
     "languageMenu": "Select language"
   },
   "hero": {
+    "ariaLabel": "Introduction",
     "greeting": "Hi, I'm",
     "title": "Senior Full-Stack Engineer",
     "description": "I build performant, accessible web applications with a focus on clean architecture and great user experience.",
@@ -22,6 +23,7 @@
   },
   "about": {
     "sectionTitle": "About Me",
+    "imageAlt": "Profile photo of Nina Li",
     "bio1": "[Placeholder: personal narrative about your background and passion]",
     "bio2": "[Placeholder: your journey into tech and what drives you]",
     "feature1Title": "Web Development",
