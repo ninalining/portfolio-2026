@@ -12,11 +12,13 @@
   },
   "hero": {
     "greeting": "Hej, jag heter",
-    "name": "Nina Li",
     "title": "Senior Full-Stack-ingenjör",
     "description": "Jag bygger prestandaoptimerade, tillgängliga webbapplikationer med fokus på ren arkitektur och bra användarupplevelse.",
     "ctaProjects": "Se projekt",
-    "ctaContact": "Kontakta mig"
+    "ctaContact": "Kontakta mig",
+    "statsYears": "År",
+    "statsProjects": "Projekt",
+    "statsPassion": "Passion"
   },
   "about": {
     "sectionTitle": "Om Mig",

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { defaultLocale, isSupportedLocale, locales, ogLocaleMap } from "@/i18n/routing";
 import type { LocalePageProps } from "@/types/locale";
+import { HeroSection } from "@/components/sections/HeroSection";
 
 export function generateStaticParams(): { locale: string }[] {
   return locales.map((locale) => ({ locale }));
@@ -22,15 +23,9 @@ export default async function Home({ params }: LocalePageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const t = await getTranslations({ locale, namespace: "hero" });
-
   return (
     <main>
-      {/* Hero */}
-      <section id="hero" aria-label="Introduction">
-        <h1>{t("name")}</h1>
-        <p>{t("title")}</p>
-      </section>
+      <HeroSection />
 
       {/* About */}
       <section id="about" aria-label="About me">
