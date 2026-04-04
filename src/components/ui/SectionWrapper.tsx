@@ -9,7 +9,7 @@ export function SectionWrapper({
 }: SectionWrapperProps) {
   return (
     <section id={id} aria-label={ariaLabel} className={cn('py-24 px-6', className)}>
-      <div className="max-w-6xl mx-auto">{children}</div>
+      <div className="max-w-6xl mx-auto relative z-10">{children}</div>
     </section>
   )
 }
