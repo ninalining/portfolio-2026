@@ -12,11 +12,13 @@
   },
   "hero": {
     "greeting": "Hi, I'm",
-    "name": "Nina Li",
     "title": "Senior Full-Stack Engineer",
     "description": "I build performant, accessible web applications with a focus on clean architecture and great user experience.",
     "ctaProjects": "View Projects",
-    "ctaContact": "Get in Touch"
+    "ctaContact": "Get in Touch",
+    "statsYears": "Years",
+    "statsProjects": "Projects",
+    "statsPassion": "Passion"
   },
   "about": {
     "sectionTitle": "About Me",

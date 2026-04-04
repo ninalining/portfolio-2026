@@ -7,4 +7,9 @@ export const profile: Profile = {
   github: 'https://github.com/ninali',
   linkedin: 'https://www.linkedin.com/in/ninali',
   location: 'Stockholm, Sweden',
+  stats: {
+    yearsValue: '5+',
+    projectsValue: '20+',
+    passionValue: '100%',
+  },
 }

@@ -5,4 +5,9 @@ export interface Profile {
   github: string
   linkedin: string
   location?: string
+  stats: {
+    yearsValue: string
+    projectsValue: string
+    passionValue: string
+  }
 }
