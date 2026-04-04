@@ -3,6 +3,7 @@ import { setRequestLocale } from 'next-intl/server'
 import { defaultLocale, isSupportedLocale, locales, ogLocaleMap } from '@/i18n/routing'
 import type { LocalePageProps } from '@/types/locale'
 import { HeroSection } from '@/components/sections/HeroSection'
+import { AboutSection } from '@/components/sections/AboutSection'
 
 export function generateStaticParams(): { locale: string }[] {
   return locales.map((locale) => ({ locale }))
@@ -20,17 +21,15 @@ export async function generateMetadata({ params }: LocalePageProps): Promise<Met
 }
 
 export default async function Home({ params }: LocalePageProps) {
-  const { locale } = await params
+  const { locale: rawLocale } = await params
+  const locale = isSupportedLocale(rawLocale) ? rawLocale : defaultLocale
   setRequestLocale(locale)
 
   return (
     <main>
-      <HeroSection />
+      <HeroSection locale={locale} />
 
-      {/* About */}
-      <section id="about" aria-label="About me">
-        {/* TODO: About section */}
-      </section>
+      <AboutSection locale={locale} />
 
       {/* Experience */}
       <section id="experience" aria-label="Work experience">
