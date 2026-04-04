@@ -94,10 +94,6 @@ export async function AboutSection({ locale }: { locale: Locale }) {
 
           {/* Right — content */}
           <div className="order-1 md:order-2 animate-fade-in-right">
-            <div className="inline-block mb-6" aria-hidden="true">
-              <span className="text-5xl">💫</span>
-            </div>
-
             <h2 className="text-5xl md:text-6xl mb-6 text-foreground font-semibold">
               {t('sectionTitle')}
             </h2>
