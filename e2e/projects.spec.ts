@@ -10,6 +10,7 @@ test.describe('Projects section', () => {
 
   test('renders 3 project cards', async ({ page }) => {
     await page.goto('/en')
+    // Count matches the number of entries in src/data/projects.ts
     const cards = page.locator('#projects article')
     await expect(cards).toHaveCount(3)
   })

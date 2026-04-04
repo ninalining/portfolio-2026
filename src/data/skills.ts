@@ -2,13 +2,14 @@ import type { SkillGroup } from '@/types/skill'
 
 export const skills: SkillGroup = {
   frontend: [
-    'TypeScript',
     'React',
+    'TypeScript',
     'Next.js',
     'Tailwind CSS',
-    'Framer Motion',
     'Accessibility (WCAG AA)',
+    'HTML/CSS',
   ],
-  backend: ['Node.js', 'PostgreSQL', 'Redis', 'REST APIs', 'GraphQL'],
-  tools: ['Git & GitHub', 'Vercel', 'Docker', 'GitHub Actions', 'Playwright', 'Vitest'],
+  backend: ['Node.js', 'PostgreSQL', 'Redis', 'REST APIs', 'GraphQL', 'Python'],
+  tools: ['Git & GitHub', 'Docker', 'Vercel', 'GitHub Actions', 'Playwright', 'Figma'],
+  extra: ['JavaScript', 'CSS3', 'Webpack', 'Vite', 'Redux', 'Sass'],
 }

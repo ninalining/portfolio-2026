@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server'
 import { profile } from '@/data/profile'
 import type { Locale } from '@/i18n/routing'
 import { getInitials } from '@/lib/utils'
+import { SectionWrapper } from '@/components/ui/SectionWrapper'
 
 export async function AboutSection({ locale }: { locale: Locale }) {
   const t = await getTranslations({ locale, namespace: 'about' })
@@ -29,10 +30,10 @@ export async function AboutSection({ locale }: { locale: Locale }) {
   ]
 
   return (
-    <section
+    <SectionWrapper
       id="about"
       aria-label={t('sectionTitle')}
-      className="py-24 px-6 bg-white relative overflow-hidden"
+      className="bg-white relative overflow-hidden"
     >
       {/* SVG wave decoration */}
       <div
@@ -57,72 +58,70 @@ export async function AboutSection({ locale }: { locale: Locale }) {
         </svg>
       </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          {/* Left — image placeholder */}
-          <div className="relative order-2 md:order-1 animate-fade-in-left">
-            <div className="relative">
-              {/* Avatar card */}
-              <div className="aspect-4/5 rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white bg-linear-to-br from-primary to-mint-light flex items-center justify-center">
-                <span
-                  className="text-white text-8xl font-bold select-none"
-                  aria-label={t('imageAlt')}
-                >
-                  {getInitials(profile.name)}
-                </span>
-              </div>
-
-              {/* Decorative shapes */}
-              <div
-                className="absolute -top-6 -right-6 w-40 h-40 bg-yellow rounded-4xl -z-10 shadow-lg rotate-12 pointer-events-none"
-                aria-hidden="true"
-              />
-              <div
-                className="absolute -bottom-6 -left-6 w-32 h-32 bg-primary rounded-4xl -z-10 shadow-lg -rotate-12 pointer-events-none"
-                aria-hidden="true"
-              />
-
-              {/* Floating Heart badge */}
-              <div
-                className="absolute top-8 -right-4 bg-white rounded-2xl p-4 shadow-xl animate-float"
-                aria-hidden="true"
+      <div className="grid md:grid-cols-2 gap-16 items-center">
+        {/* Left — image placeholder */}
+        <div className="relative order-2 md:order-1 animate-fade-in-left">
+          <div className="relative">
+            {/* Avatar card */}
+            <div className="aspect-4/5 rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white bg-linear-to-br from-primary to-mint-light flex items-center justify-center">
+              <span
+                className="text-white text-8xl font-bold select-none"
+                aria-label={t('imageAlt')}
               >
-                <Heart className="text-lavender" size={32} fill="currentColor" />
-              </div>
+                {getInitials(profile.name)}
+              </span>
             </div>
-          </div>
 
-          {/* Right — content */}
-          <div className="order-1 md:order-2 animate-fade-in-right">
-            <h2 className="text-5xl md:text-6xl mb-6 text-foreground font-semibold">
-              {t('sectionTitle')}
-            </h2>
+            {/* Decorative shapes */}
+            <div
+              className="absolute -top-6 -right-6 w-40 h-40 bg-yellow rounded-4xl -z-10 shadow-lg rotate-12 pointer-events-none"
+              aria-hidden="true"
+            />
+            <div
+              className="absolute -bottom-6 -left-6 w-32 h-32 bg-primary rounded-4xl -z-10 shadow-lg -rotate-12 pointer-events-none"
+              aria-hidden="true"
+            />
 
-            <p className="text-lg text-foreground/70 mb-6 leading-relaxed">{t('bio1')}</p>
-            <p className="text-lg text-foreground/70 mb-10 leading-relaxed">{t('bio2')}</p>
-
-            {/* Feature cards */}
-            <div className="space-y-5">
-              {features.map((feature) => (
-                <div
-                  key={feature.title}
-                  className="group flex gap-4 items-start p-5 bg-cream rounded-2xl hover:shadow-lg transition-all hover:-translate-y-1"
-                >
-                  <div
-                    className={`shrink-0 w-14 h-14 ${feature.colorClass} rounded-2xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform`}
-                  >
-                    {feature.icon}
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl mb-1 text-foreground font-medium">{feature.title}</h3>
-                    <p className="text-foreground/60 leading-relaxed">{feature.description}</p>
-                  </div>
-                </div>
-              ))}
+            {/* Floating Heart badge */}
+            <div
+              className="absolute top-8 -right-4 bg-white rounded-2xl p-4 shadow-xl animate-float"
+              aria-hidden="true"
+            >
+              <Heart className="text-lavender" size={32} fill="currentColor" />
             </div>
           </div>
         </div>
+
+        {/* Right — content */}
+        <div className="order-1 md:order-2 animate-fade-in-right">
+          <h2 className="text-5xl md:text-6xl mb-6 text-foreground font-semibold">
+            {t('sectionTitle')}
+          </h2>
+
+          <p className="text-lg text-foreground/70 mb-6 leading-relaxed">{t('bio1')}</p>
+          <p className="text-lg text-foreground/70 mb-10 leading-relaxed">{t('bio2')}</p>
+
+          {/* Feature cards */}
+          <div className="space-y-5">
+            {features.map((feature) => (
+              <div
+                key={feature.title}
+                className="group flex gap-4 items-start p-5 bg-cream rounded-2xl hover:shadow-lg transition-all hover:-translate-y-1"
+              >
+                <div
+                  className={`shrink-0 w-14 h-14 ${feature.colorClass} rounded-2xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform`}
+                >
+                  {feature.icon}
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl mb-1 text-foreground font-medium">{feature.title}</h3>
+                  <p className="text-foreground/60 leading-relaxed">{feature.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-    </section>
+    </SectionWrapper>
   )
 }

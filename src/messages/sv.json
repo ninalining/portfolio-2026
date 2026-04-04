@@ -38,9 +38,17 @@
   },
   "skills": {
     "sectionTitle": "Kompetenser",
-    "frontend": "Frontend",
-    "backend": "Backend",
-    "tools": "Verktyg & Metoder"
+    "sectionSubtitle": "Teknologier och verktyg jag använder för att skapa digitala lösningar.",
+    "frontend": "Frontend-utveckling",
+    "backend": "Backend-utveckling",
+    "tools": "Verktyg & Arbetsflöde",
+    "frontendDesc": "Bygger vackra och responsiva användargränssnitt",
+    "backendDesc": "Skapar robusta server-applikationer",
+    "toolsDesc": "Moderna utvecklingsverktyg och metoder",
+    "statYears": "År av Erfarenhet",
+    "statProjects": "Levererade Projekt",
+    "statLearning": "Ständigt Lärande",
+    "moreLabel": "Och många fler..."
   },
   "projects": {
     "sectionTitle": "Projekt",
