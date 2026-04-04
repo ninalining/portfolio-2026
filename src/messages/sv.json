@@ -11,6 +11,7 @@
     "languageMenu": "Välj språk"
   },
   "hero": {
+    "ariaLabel": "Introduktion",
     "greeting": "Hej, jag heter",
     "title": "Senior Full-Stack-ingenjör",
     "description": "Jag bygger prestandaoptimerade, tillgängliga webbapplikationer med fokus på ren arkitektur och bra användarupplevelse.",
@@ -22,6 +23,7 @@
   },
   "about": {
     "sectionTitle": "Om Mig",
+    "imageAlt": "Profilfoto av Nina Li",
     "bio1": "[Platshållare: personlig berättelse om din bakgrund och passion]",
     "bio2": "[Platshållare: din resa inom tech och vad som driver dig]",
     "feature1Title": "Webbutveckling",
