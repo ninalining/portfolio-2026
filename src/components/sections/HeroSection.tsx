@@ -1,14 +1,17 @@
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
 import { profile } from '@/data/profile'
+import type { Locale } from '@/i18n/routing'
+import { Button } from '@/components/ui/Button'
+import { getInitials } from '@/lib/utils'
 
-export async function HeroSection() {
-  const t = await getTranslations('hero')
+export async function HeroSection({ locale }: { locale: Locale }) {
+  const t = await getTranslations({ locale, namespace: 'hero' })
 
   return (
     <section
       id="hero"
-      aria-label="Introduction"
+      aria-label={t('ariaLabel')}
       className="min-h-screen flex items-center justify-center bg-cream px-6 py-20 relative overflow-hidden"
     >
       {/* Background blur circles */}
@@ -52,9 +55,9 @@ export async function HeroSection() {
 
           {/* CTA buttons */}
           <div className="flex flex-wrap gap-4 pt-2">
-            <a
+            <Button
               href="#projects"
-              className="group inline-flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 hover:-translate-y-1 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="group px-8 py-4 text-base hover:scale-105 hover:-translate-y-1"
             >
               {t('ctaProjects')}
               <ArrowDown
@@ -62,43 +65,50 @@ export async function HeroSection() {
                 className="group-hover:translate-y-1 transition-transform"
                 aria-hidden="true"
               />
-            </a>
-            <a
+            </Button>
+            <Button
               href="#contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-foreground border-2 border-primary rounded-full shadow hover:shadow-lg transition-all hover:scale-105 hover:-translate-y-1 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              variant="outline"
+              className="px-8 py-4 text-base bg-white text-foreground hover:bg-white hover:scale-105 hover:-translate-y-1 hover:shadow-lg"
             >
               {t('ctaContact')}
-            </a>
+            </Button>
           </div>
 
           {/* Social links */}
-          <div className="flex items-center gap-4 pt-2">
-            <a
-              href={profile.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className="w-10 h-10 rounded-2xl bg-white shadow flex items-center justify-center text-foreground/60 hover:text-primary hover:shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            >
-              <Github size={20} aria-hidden="true" />
-            </a>
-            <a
-              href={profile.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="w-10 h-10 rounded-2xl bg-white shadow flex items-center justify-center text-foreground/60 hover:text-primary hover:shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            >
-              <Linkedin size={20} aria-hidden="true" />
-            </a>
-            <a
-              href={`mailto:${profile.email}`}
-              aria-label="Email"
-              className="w-10 h-10 rounded-2xl bg-white shadow flex items-center justify-center text-foreground/60 hover:text-primary hover:shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            >
-              <Mail size={20} aria-hidden="true" />
-            </a>
-          </div>
+          <ul className="flex items-center gap-4 pt-2" aria-label="Social links">
+            <li>
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="w-10 h-10 rounded-2xl bg-white shadow flex items-center justify-center text-foreground/60 hover:text-primary hover:shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <Github size={20} aria-hidden="true" />
+              </a>
+            </li>
+            <li>
+              <a
+                href={profile.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="w-10 h-10 rounded-2xl bg-white shadow flex items-center justify-center text-foreground/60 hover:text-primary hover:shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <Linkedin size={20} aria-hidden="true" />
+              </a>
+            </li>
+            <li>
+              <a
+                href={`mailto:${profile.email}`}
+                aria-label="Email"
+                className="w-10 h-10 rounded-2xl bg-white shadow flex items-center justify-center text-foreground/60 hover:text-primary hover:shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <Mail size={20} aria-hidden="true" />
+              </a>
+            </li>
+          </ul>
         </div>
 
         {/* Right — decorative card */}
@@ -117,10 +127,7 @@ export async function HeroSection() {
             {/* Avatar placeholder */}
             <div className="w-full aspect-square bg-linear-to-br from-primary to-mint-light rounded-[2.5rem] mb-6 flex items-center justify-center">
               <span className="text-white text-6xl font-bold select-none">
-                {profile.name
-                  .split(' ')
-                  .map((n) => n[0])
-                  .join('')}
+                {getInitials(profile.name)}
               </span>
             </div>
 
