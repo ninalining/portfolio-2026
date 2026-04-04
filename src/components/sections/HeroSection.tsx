@@ -12,12 +12,20 @@ export async function HeroSection() {
       className="min-h-screen flex items-center justify-center bg-cream px-6 py-20 relative overflow-hidden"
     >
       {/* Background blur circles */}
-      <div className="absolute top-20 left-10 w-64 h-64 bg-primary rounded-full opacity-20 blur-3xl animate-pulse-slow pointer-events-none" aria-hidden="true" />
-      <div className="absolute bottom-20 right-10 w-80 h-80 bg-yellow rounded-full opacity-20 blur-3xl animate-pulse-slow delay-300 pointer-events-none" aria-hidden="true" />
-      <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-lavender rounded-full opacity-20 blur-2xl animate-float pointer-events-none" aria-hidden="true" />
+      <div
+        className="absolute top-20 left-10 w-64 h-64 bg-primary rounded-full opacity-20 blur-3xl animate-pulse-slow pointer-events-none"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute bottom-20 right-10 w-80 h-80 bg-yellow rounded-full opacity-20 blur-3xl animate-pulse-slow delay-300 pointer-events-none"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute top-1/2 left-1/3 w-48 h-48 bg-lavender rounded-full opacity-20 blur-2xl animate-float pointer-events-none"
+        aria-hidden="true"
+      />
 
       <div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
-
         {/* Left — text content */}
         <div className="space-y-6 animate-fade-in-left">
           {/* Badge */}
@@ -28,14 +36,14 @@ export async function HeroSection() {
 
           {/* Heading */}
           <h1 className="text-5xl md:text-6xl lg:text-7xl leading-tight">
-            <span className="text-foreground/60 text-3xl md:text-4xl block mb-2">{t('greeting')}</span>
+            <span className="text-foreground/60 text-3xl md:text-4xl block mb-2">
+              {t('greeting')}
+            </span>
             <span className="text-primary font-semibold">{profile.name}</span>
           </h1>
 
           {/* Title */}
-          <p className="text-xl md:text-2xl text-foreground/70 font-medium">
-            {t('title')}
-          </p>
+          <p className="text-xl md:text-2xl text-foreground/70 font-medium">{t('title')}</p>
 
           {/* Description */}
           <p className="text-base text-foreground/60 max-w-md leading-relaxed">
@@ -49,7 +57,11 @@ export async function HeroSection() {
               className="group inline-flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 hover:-translate-y-1 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {t('ctaProjects')}
-              <ArrowDown size={18} className="group-hover:translate-y-1 transition-transform" aria-hidden="true" />
+              <ArrowDown
+                size={18}
+                className="group-hover:translate-y-1 transition-transform"
+                aria-hidden="true"
+              />
             </a>
             <a
               href="#contact"
@@ -92,14 +104,23 @@ export async function HeroSection() {
         {/* Right — decorative card */}
         <div className="relative animate-fade-in-right hidden md:block">
           {/* Floating corner decorations */}
-          <div className="absolute -top-4 -right-4 w-16 h-16 bg-yellow rounded-2xl shadow-lg animate-float pointer-events-none" aria-hidden="true" />
-          <div className="absolute -bottom-4 -left-4 w-20 h-20 bg-lavender rounded-2xl shadow-lg animate-float delay-200 pointer-events-none" aria-hidden="true" />
+          <div
+            className="absolute -top-4 -right-4 w-16 h-16 bg-yellow rounded-2xl shadow-lg animate-float pointer-events-none"
+            aria-hidden="true"
+          />
+          <div
+            className="absolute -bottom-4 -left-4 w-20 h-20 bg-lavender rounded-2xl shadow-lg animate-float delay-200 pointer-events-none"
+            aria-hidden="true"
+          />
 
           <div className="bg-white rounded-[3rem] p-8 shadow-2xl border-4 border-primary">
             {/* Avatar placeholder */}
             <div className="w-full aspect-square bg-linear-to-br from-primary to-mint-light rounded-[2.5rem] mb-6 flex items-center justify-center">
               <span className="text-white text-6xl font-bold select-none">
-                {profile.name.split(' ').map((n) => n[0]).join('')}
+                {profile.name
+                  .split(' ')
+                  .map((n) => n[0])
+                  .join('')}
               </span>
             </div>
 
@@ -123,7 +144,10 @@ export async function HeroSection() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-foreground/40 animate-bounce" aria-hidden="true">
+      <div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-foreground/40 animate-bounce"
+        aria-hidden="true"
+      >
         <ArrowDown size={16} />
       </div>
     </section>

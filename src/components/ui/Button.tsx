@@ -3,12 +3,9 @@ import type { ButtonVariant, ButtonProps, ButtonAsAnchor } from '@/types/button'
 import { cn } from '@/lib/utils'
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary:
-    'bg-primary text-primary-foreground shadow-lg hover:shadow-xl hover:opacity-90',
-  outline:
-    'border-2 border-primary text-primary bg-transparent hover:bg-primary/10',
-  ghost:
-    'bg-transparent text-foreground hover:bg-muted',
+  primary: 'bg-primary text-primary-foreground shadow-lg hover:shadow-xl hover:opacity-90',
+  outline: 'border-2 border-primary text-primary bg-transparent hover:bg-primary/10',
+  ghost: 'bg-transparent text-foreground hover:bg-muted',
 }
 
 const baseClasses =

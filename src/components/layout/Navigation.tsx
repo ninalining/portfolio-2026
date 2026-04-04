@@ -26,8 +26,7 @@ const LOCALES = [
   { code: 'sv', label: 'SV' },
 ] as const
 
-const FOCUSABLE_SELECTORS =
-  'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+const FOCUSABLE_SELECTORS = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
 
 export function Navigation() {
   const t = useTranslations('navigation')
@@ -49,10 +48,13 @@ export function Navigation() {
     hamburgerRef.current?.focus()
   }, [])
 
-  const switchLocale = useCallback((targetLocale: string) => {
-    setLangOpen(false)
-    router.replace(pathname, { locale: targetLocale as 'en' | 'sv' })
-  }, [router, pathname])
+  const switchLocale = useCallback(
+    (targetLocale: string) => {
+      setLangOpen(false)
+      router.replace(pathname, { locale: targetLocale as 'en' | 'sv' })
+    },
+    [router, pathname],
+  )
 
   // Scroll detection
   useEffect(() => {
@@ -69,9 +71,7 @@ export function Navigation() {
     const overlay = overlayRef.current
     if (!overlay) return
 
-    const focusable = Array.from(
-      overlay.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTORS)
-    )
+    const focusable = Array.from(overlay.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTORS))
     focusable[0]?.focus()
 
     function handleKeyDown(e: KeyboardEvent) {
@@ -134,12 +134,16 @@ export function Navigation() {
         'sticky top-0 z-50 w-full transition-all duration-300',
         isScrolled
           ? 'bg-cream/95 backdrop-blur-md border-b border-border/40 shadow-sm'
-          : 'bg-transparent border-b border-transparent'
+          : 'bg-transparent border-b border-transparent',
       )}
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="#hero" aria-label="Nina Li — back to top" className="flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm">
+        <a
+          href="#hero"
+          aria-label="Nina Li — back to top"
+          className="flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+        >
           <Image src="/logo-mark.svg" width={LOGO_SIZE} height={LOGO_SIZE} alt="NL logo" />
         </a>
 
@@ -181,7 +185,7 @@ export function Navigation() {
                     onClick={() => switchLocale(code)}
                     className={cn(
                       'w-full text-left px-4 py-2 text-sm hover:bg-muted transition-colors focus-visible:outline-none focus-visible:bg-muted',
-                      locale === code && 'font-semibold text-primary'
+                      locale === code && 'font-semibold text-primary',
                     )}
                   >
                     {label}
@@ -200,9 +204,7 @@ export function Navigation() {
           onClick={() => setMenuOpen(true)}
           className={cn(
             'md:hidden w-10 h-10 rounded-2xl flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
-            isScrolled
-              ? 'bg-primary text-white'
-              : 'bg-white text-foreground shadow-md'
+            isScrolled ? 'bg-primary text-white' : 'bg-white text-foreground shadow-md',
           )}
         >
           <Menu size={ICON_SIZE_MD} aria-hidden="true" />
@@ -247,10 +249,15 @@ export function Navigation() {
             {LOCALES.map(({ code, label }) => (
               <button
                 key={code}
-                onClick={() => { switchLocale(code); closeMenu() }}
+                onClick={() => {
+                  switchLocale(code)
+                  closeMenu()
+                }}
                 className={cn(
                   'text-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm',
-                  locale === code ? 'text-primary font-semibold' : 'text-foreground/60 hover:text-foreground'
+                  locale === code
+                    ? 'text-primary font-semibold'
+                    : 'text-foreground/60 hover:text-foreground',
                 )}
               >
                 {label}

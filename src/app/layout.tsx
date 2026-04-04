@@ -17,9 +17,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   const locale = await getLocale()
   return (
     <html lang={locale}>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
-      </body>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
     </html>
   )
 }

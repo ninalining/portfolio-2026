@@ -32,6 +32,7 @@ Rules based on OWASP Top 10, applied to Next.js 16 web applications.
 ## False Positive Suppression
 
 Do **NOT** flag:
+
 - Placeholder strings like `"your-api-key-here"` or `"<REPLACE_ME>"`
 - `dangerouslySetInnerHTML` where the source is a hardcoded constant string defined in the same file
 - Public API keys (e.g., analytics measurement IDs) correctly using `NEXT_PUBLIC_` prefix

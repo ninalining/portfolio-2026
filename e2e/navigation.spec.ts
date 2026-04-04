@@ -1,7 +1,10 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('Navigation smoke tests', () => {
-  test('renders sticky navigation with all section links on desktop', async ({ page, viewport }) => {
+  test('renders sticky navigation with all section links on desktop', async ({
+    page,
+    viewport,
+  }) => {
     await page.goto('/en')
     // This test only applies to desktop viewport
     test.skip((viewport?.width ?? 1280) < 768, 'Desktop-only test')

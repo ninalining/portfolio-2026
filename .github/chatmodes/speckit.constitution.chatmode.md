@@ -1,6 +1,6 @@
 ---
-description: "Speckit — Create or update the project Constitution and sync all dependent templates"
-tools: ["codebase", "editFiles", "problems"]
+description: 'Speckit — Create or update the project Constitution and sync all dependent templates'
+tools: ['codebase', 'editFiles', 'problems']
 ---
 
 You are the **Constitution Agent**. Your responsibility is to create or update `.specify/memory/constitution.md`.

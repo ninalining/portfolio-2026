@@ -9,19 +9,6 @@ export const skills: SkillGroup = {
     'Framer Motion',
     'Accessibility (WCAG AA)',
   ],
-  backend: [
-    'Node.js',
-    'PostgreSQL',
-    'Redis',
-    'REST APIs',
-    'GraphQL',
-  ],
-  tools: [
-    'Git & GitHub',
-    'Vercel',
-    'Docker',
-    'GitHub Actions',
-    'Playwright',
-    'Vitest',
-  ],
+  backend: ['Node.js', 'PostgreSQL', 'Redis', 'REST APIs', 'GraphQL'],
+  tools: ['Git & GitHub', 'Vercel', 'Docker', 'GitHub Actions', 'Playwright', 'Vitest'],
 }
