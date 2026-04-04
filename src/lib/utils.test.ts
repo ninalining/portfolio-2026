@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { cn } from './utils'
+import { cn, getInitials } from './utils'
 
 describe('cn()', () => {
   it('returns a single class unchanged', () => {
@@ -24,5 +24,19 @@ describe('cn()', () => {
 
   it('supports conditional object syntax from clsx', () => {
     expect(cn({ 'font-bold': true, italic: false })).toBe('font-bold')
+  })
+})
+
+describe('getInitials()', () => {
+  it('returns initials from two-word name', () => {
+    expect(getInitials('Nina Li')).toBe('NL')
+  })
+
+  it('returns initials from three-word name', () => {
+    expect(getInitials('Anna Maria Svensson')).toBe('AMS')
+  })
+
+  it('returns single initial for one-word name', () => {
+    expect(getInitials('Madonna')).toBe('M')
   })
 })
