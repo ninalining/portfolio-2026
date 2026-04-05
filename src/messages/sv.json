@@ -60,13 +60,18 @@
   "contact": {
     "sectionTitle": "Kontakta Mig",
     "sectionSubtitle": "Har du ett projekt eller en idé? Hör gärna av dig.",
+    "letsTalkHeading": "Låt oss prata!",
+    "letsTalkDesc": "Jag är alltid öppen för nya möjligheter och samarbeten. Kontakta mig via någon av mina kanaler.",
+    "emailLabel": "E-post",
+    "locationLabel": "Plats",
+    "followLabel": "Följ mig online",
     "nameLabel": "Namn",
     "namePlaceholder": "Ditt namn",
-    "emailLabel": "E-post",
     "emailPlaceholder": "din@epost.se",
     "messageLabel": "Meddelande",
     "messagePlaceholder": "Berätta om ditt projekt...",
-    "submit": "Skicka meddelande"
+    "submit": "Skicka meddelande",
+    "successMessage": "Tack för ditt meddelande! Jag återkommer snart."
   },
   "footer": {
     "rights": "Alla rättigheter förbehållna.",
