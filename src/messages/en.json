@@ -60,13 +60,18 @@
   "contact": {
     "sectionTitle": "Contact",
     "sectionSubtitle": "Have a project or idea? I'd love to hear from you.",
+    "letsTalkHeading": "Let's Talk!",
+    "letsTalkDesc": "I'm always open to new opportunities and collaborations. Reach out through any of my channels.",
+    "emailLabel": "Email",
+    "locationLabel": "Location",
+    "followLabel": "Follow me online",
     "nameLabel": "Name",
     "namePlaceholder": "Your name",
-    "emailLabel": "Email",
     "emailPlaceholder": "your@email.com",
     "messageLabel": "Message",
     "messagePlaceholder": "Tell me about your project...",
-    "submit": "Send Message"
+    "submit": "Send Message",
+    "successMessage": "Thank you for your message! I'll get back to you soon."
   },
   "footer": {
     "rights": "All rights reserved.",
