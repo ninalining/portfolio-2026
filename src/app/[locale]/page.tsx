@@ -6,6 +6,7 @@ import { HeroSection } from '@/components/sections/HeroSection'
 import { AboutSection } from '@/components/sections/AboutSection'
 import { SkillsSection } from '@/components/sections/SkillsSection'
 import { ProjectsSection } from '@/components/sections/ProjectsSection'
+import { ContactSection } from '@/components/sections/ContactSection'
 
 export function generateStaticParams(): { locale: string }[] {
   return locales.map((locale) => ({ locale }))
@@ -45,9 +46,7 @@ export default async function Home({ params }: LocalePageProps) {
       <SkillsSection locale={locale} />
 
       {/* Contact */}
-      <section id="contact" aria-label="Contact">
-        {/* TODO: Contact section */}
-      </section>
+      <ContactSection locale={locale} />
     </main>
   )
 }
