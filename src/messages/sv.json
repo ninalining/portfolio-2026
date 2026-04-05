@@ -25,18 +25,12 @@
   },
   "about": {
     "sectionTitle": "Om Mig",
-    "imageAlt": "Profilfoto av Nina Li",
-    "bio1": "[Platshållare: personlig berättelse om din bakgrund och passion]",
-    "bio2": "[Platshållare: din resa inom tech och vad som driver dig]",
-    "feature1Title": "Webbutveckling",
-    "feature1Desc": "Skapar responsiva och moderna webbapplikationer med senaste teknologin.",
-    "feature2Title": "UI/UX-design",
-    "feature2Desc": "Designar intuitiva och visuellt tilltalande användargränssnitt.",
-    "feature3Title": "Optimering",
-    "feature3Desc": "Fokuserar på Core Web Vitals och snabba, tillförlitliga upplevelser."
+    "imageAlt": "Profilfoto av Nina Li"
   },
   "experience": {
-    "sectionTitle": "Erfarenhet"
+    "sectionTitle": "Erfarenhet",
+    "present": "Nuvarande",
+    "technologiesUsed": "Använda teknologier"
   },
   "skills": {
     "sectionTitle": "Kompetenser",

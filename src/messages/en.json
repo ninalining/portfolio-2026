@@ -25,18 +25,12 @@
   },
   "about": {
     "sectionTitle": "About Me",
-    "imageAlt": "Profile photo of Nina Li",
-    "bio1": "[Placeholder: personal narrative about your background and passion]",
-    "bio2": "[Placeholder: your journey into tech and what drives you]",
-    "feature1Title": "Web Development",
-    "feature1Desc": "Building responsive, modern web applications with the latest technologies.",
-    "feature2Title": "UI/UX Design",
-    "feature2Desc": "Designing intuitive and visually engaging user interfaces.",
-    "feature3Title": "Performance",
-    "feature3Desc": "Focused on Core Web Vitals and delivering fast, reliable experiences."
+    "imageAlt": "Profile photo of Nina Li"
   },
   "experience": {
-    "sectionTitle": "Experience"
+    "sectionTitle": "Experience",
+    "present": "Present",
+    "technologiesUsed": "Technologies used"
   },
   "skills": {
     "sectionTitle": "Skills",

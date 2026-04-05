@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { getLocale } from 'next-intl/server'
+import StoryblokProvider from '@/components/StoryblokProvider'
 import './globals.css'
 
 const geistSans = Geist({
@@ -16,8 +17,12 @@ const geistMono = Geist_Mono({
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const locale = await getLocale()
   return (
-    <html lang={locale}>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
-    </html>
+    <StoryblokProvider>
+      <html lang={locale}>
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+          {children}
+        </body>
+      </html>
+    </StoryblokProvider>
   )
 }

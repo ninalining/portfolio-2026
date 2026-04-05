@@ -9,4 +9,5 @@ export interface Project {
   coverImage?: string
   liveUrl?: string
   githubUrl?: string
+  sortOrder?: number
 }

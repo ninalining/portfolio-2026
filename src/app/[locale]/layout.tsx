@@ -6,6 +6,7 @@ import { defaultLocale, isSupportedLocale, locales, ogLocaleMap } from '@/i18n/r
 import type { LocaleLayoutProps } from '@/types/locale'
 import { Navigation } from '@/components/layout/Navigation'
 import { Footer } from '@/components/layout/Footer'
+import { getProfile } from '@/lib/storyblok'
 
 export function generateStaticParams(): { locale: string }[] {
   return locales.map((locale) => ({ locale }))
@@ -47,13 +48,13 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 
   setRequestLocale(locale)
 
-  const messages = await getMessages()
+  const [messages, profile] = await Promise.all([getMessages(), getProfile()])
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <Navigation />
+      <Navigation linkedin={profile.linkedin} github={profile.github} />
       {children}
-      <Footer locale={locale} />
+      <Footer locale={locale} profile={profile} />
     </NextIntlClientProvider>
   )
 }
