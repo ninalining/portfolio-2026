@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { defaultLocale, isSupportedLocale, locales, ogLocaleMap } from '@/i18n/routing'
 import type { LocaleLayoutProps } from '@/types/locale'
 import { Navigation } from '@/components/layout/Navigation'
+import { Footer } from '@/components/layout/Footer'
 
 export function generateStaticParams(): { locale: string }[] {
   return locales.map((locale) => ({ locale }))
@@ -52,6 +53,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     <NextIntlClientProvider locale={locale} messages={messages}>
       <Navigation />
       {children}
+      <Footer locale={locale} />
     </NextIntlClientProvider>
   )
 }
