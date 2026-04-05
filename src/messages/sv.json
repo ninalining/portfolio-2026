@@ -29,7 +29,11 @@
   },
   "experience": {
     "sectionTitle": "Erfarenhet",
+    "sectionSubtitle": "Min professionella resa inom webbutveckling och teknologi.",
     "present": "Nuvarande",
+    "currentPosition": "Nuvarande Position",
+    "responsibilitiesLabel": "Ansvarsområden",
+    "technologiesLabel": "Teknologier",
     "technologiesUsed": "Använda teknologier"
   },
   "skills": {
