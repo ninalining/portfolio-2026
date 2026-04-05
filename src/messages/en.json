@@ -29,7 +29,11 @@
   },
   "experience": {
     "sectionTitle": "Experience",
+    "sectionSubtitle": "My professional journey in web development and technology.",
     "present": "Present",
+    "currentPosition": "Current Position",
+    "responsibilitiesLabel": "Responsibilities",
+    "technologiesLabel": "Technologies",
     "technologiesUsed": "Technologies used"
   },
   "skills": {
