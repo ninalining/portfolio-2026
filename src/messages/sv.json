@@ -8,7 +8,8 @@
     "switchLanguage": "EN",
     "openMenu": "Öppna navigationsmenyn",
     "closeMenu": "Stäng navigationsmenyn",
-    "languageMenu": "Välj språk"
+    "languageMenu": "Välj språk",
+    "followLabel": "Följ mig"
   },
   "hero": {
     "ariaLabel": "Introduktion",
