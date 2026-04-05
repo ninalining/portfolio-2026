@@ -3,14 +3,14 @@ import type { LucideIcon } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
 import { skills } from '@/data/skills'
 import type { Locale } from '@/i18n/routing'
+import type { Profile } from '@/types/profile'
+import type { SkillCategoryContent, SkillCategoryKey, SkillsSectionContent } from '@/types/skill'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 
 const ANIMATION_STEP_S = 0.15
 
-type CategoryKey = 'frontend' | 'backend' | 'tools'
-
 const categoryConfig: Record<
-  CategoryKey,
+  SkillCategoryKey,
   {
     Icon: LucideIcon
     bg: string
@@ -38,40 +38,70 @@ const categoryConfig: Record<
   },
 }
 
-const categories: CategoryKey[] = ['frontend', 'backend', 'tools']
+const categories: SkillCategoryKey[] = ['frontend', 'backend', 'tools']
 
-const highlights: {
+const highlightConfig: {
   Icon: LucideIcon
-  value: string
+  valueKey: keyof Profile['stats']
   labelKey: 'statYears' | 'statProjects' | 'statLearning'
   bg: string
   text: string
 }[] = [
   {
     Icon: Briefcase,
-    value: '5+',
+    valueKey: 'yearsValue',
     labelKey: 'statYears',
     bg: 'bg-primary',
     text: 'text-primary-foreground',
   },
   {
     Icon: Rocket,
-    value: '50+',
+    valueKey: 'projectsValue',
     labelKey: 'statProjects',
     bg: 'bg-yellow',
     text: 'text-foreground',
   },
   {
     Icon: GraduationCap,
-    value: '∞',
+    valueKey: 'passionValue',
     labelKey: 'statLearning',
     bg: 'bg-lavender',
     text: 'text-primary-foreground',
   },
 ]
 
-export async function SkillsSection({ locale }: { locale: Locale }) {
+export async function SkillsSection({
+  locale,
+  profile,
+  skillsContent,
+}: {
+  locale: Locale
+  profile: Pick<Profile, 'stats'>
+  skillsContent?: SkillsSectionContent
+}) {
   const t = await getTranslations({ locale, namespace: 'skills' })
+
+  const renderedCategories: Array<{
+    key: SkillCategoryKey
+    title: string
+    description: string
+    skills: string[]
+  }> = skillsContent?.categories.length
+    ? skillsContent.categories.map((category: SkillCategoryContent) => ({
+        key: category.key,
+        title: category.title,
+        description: category.description,
+        skills: category.skills,
+      }))
+    : categories.map((key) => ({
+        key,
+        title: t(key),
+        description: t(categoryConfig[key].descKey),
+        skills: skills[key],
+      }))
+
+  const extraSkills = skillsContent?.extra.length ? skillsContent.extra : skills.extra
+  const sectionSubtitle = skillsContent?.subtitle || t('sectionSubtitle')
 
   return (
     <SectionWrapper
@@ -93,15 +123,14 @@ export async function SkillsSection({ locale }: { locale: Locale }) {
       <div className="text-center mb-16 animate-fade-in-up space-y-4">
         <h2 className="text-5xl md:text-6xl font-semibold text-foreground">{t('sectionTitle')}</h2>
         <p className="text-xl text-foreground/60 max-w-2xl mx-auto leading-relaxed">
-          {t('sectionSubtitle')}
+          {sectionSubtitle}
         </p>
       </div>
 
       {/* Skills categories grid */}
       <div className="grid md:grid-cols-3 gap-8 mb-16">
-        {categories.map((key, index) => {
-          const { Icon, bg, tagHover, descKey } = categoryConfig[key]
-          const categorySkills = skills[key]
+        {renderedCategories.map(({ key, title, description, skills: categorySkills }, index) => {
+          const { Icon, bg, tagHover } = categoryConfig[key]
           return (
             <div
               key={key}
@@ -115,8 +144,8 @@ export async function SkillsSection({ locale }: { locale: Locale }) {
                 >
                   <Icon size={28} aria-hidden="true" />
                 </div>
-                <h3 className="text-2xl font-semibold text-foreground mb-2">{t(key)}</h3>
-                <p className="text-sm text-foreground/60 leading-relaxed">{t(descKey)}</p>
+                <h3 className="text-2xl font-semibold text-foreground mb-2">{title}</h3>
+                <p className="text-sm text-foreground/60 leading-relaxed">{description}</p>
               </div>
 
               {/* Skills tag grid */}
@@ -138,7 +167,7 @@ export async function SkillsSection({ locale }: { locale: Locale }) {
 
       {/* Highlights */}
       <div className="grid md:grid-cols-3 gap-6 mb-16 animate-fade-in-up">
-        {highlights.map(({ Icon, value, labelKey, bg, text }) => (
+        {highlightConfig.map(({ Icon, valueKey, labelKey, bg, text }) => (
           <div
             key={labelKey}
             className={`${bg} rounded-4xl p-8 text-center ${text} hover:scale-105 transition-transform shadow-lg`}
@@ -146,7 +175,7 @@ export async function SkillsSection({ locale }: { locale: Locale }) {
             <div className="flex justify-center mb-3">
               <Icon size={32} aria-hidden="true" />
             </div>
-            <div className="text-4xl font-bold mb-2">{value}</div>
+            <div className="text-4xl font-bold mb-2">{profile.stats[valueKey]}</div>
             <div className="text-sm opacity-90">{t(labelKey)}</div>
           </div>
         ))}
@@ -156,7 +185,7 @@ export async function SkillsSection({ locale }: { locale: Locale }) {
       <div className="text-center animate-fade-in-up">
         <p className="text-foreground/40 text-sm mb-6">{t('moreLabel')}</p>
         <ul className="flex flex-wrap justify-center gap-3">
-          {skills.extra.map((tech) => (
+          {extraSkills.map((tech) => (
             <li key={tech}>
               <span className="px-4 py-2 bg-muted text-foreground/70 rounded-full text-sm hover:bg-primary hover:text-white transition-colors cursor-default">
                 {tech}

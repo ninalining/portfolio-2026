@@ -7,7 +7,6 @@ import { useTranslations } from 'next-intl'
 import { useRouter, usePathname } from '@/i18n/navigation'
 import { useLocale } from 'next-intl'
 import type { NavLink } from '@/types/navigation'
-import { profile } from '@/data/profile'
 import { cn } from '@/lib/utils'
 
 const LOGO_SIZE = 32
@@ -31,7 +30,13 @@ const LOCALES = [
 
 const FOCUSABLE_SELECTORS = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
 
-export function Navigation(): React.ReactElement {
+export function Navigation({
+  linkedin,
+  github,
+}: {
+  linkedin: string
+  github: string
+}): React.ReactElement {
   const t = useTranslations('navigation')
   const locale = useLocale()
   const router = useRouter()
@@ -322,7 +327,7 @@ export function Navigation(): React.ReactElement {
             <ul className="flex gap-3">
               <li>
                 <a
-                  href={profile.linkedin}
+                  href={linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
@@ -333,7 +338,7 @@ export function Navigation(): React.ReactElement {
               </li>
               <li>
                 <a
-                  href={profile.github}
+                  href={github}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub"

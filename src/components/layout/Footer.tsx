@@ -1,9 +1,15 @@
 import { Sparkles } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
-import { profile } from '@/data/profile'
+import type { Profile } from '@/types/profile'
 import type { Locale } from '@/i18n/routing'
 
-export async function Footer({ locale }: { locale: Locale }) {
+export async function Footer({
+  locale,
+  profile,
+}: {
+  locale: Locale
+  profile: Pick<Profile, 'name'>
+}) {
   const t = await getTranslations({ locale, namespace: 'footer' })
   const year = new Date().getFullYear()
 

@@ -1,9 +1,8 @@
 import { ExternalLink, Github } from 'lucide-react'
 import Image from 'next/image'
 import { getTranslations } from 'next-intl/server'
-import { projects } from '@/data/projects'
 import type { Locale } from '@/i18n/routing'
-import type { ProjectAccent } from '@/types/project'
+import type { Project, ProjectAccent } from '@/types/project'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 
 const ANIMATION_STEP_S = 0.1
@@ -14,8 +13,18 @@ const accentTagClass: Record<ProjectAccent, string> = {
   lavender: 'bg-lavender/20 text-foreground/70 border-2 border-lavender/40',
 }
 
-export async function ProjectsSection({ locale }: { locale: Locale }) {
+export async function ProjectsSection({
+  locale,
+  projects,
+}: {
+  locale: Locale
+  projects: Project[]
+}) {
   const t = await getTranslations({ locale, namespace: 'projects' })
+
+  if (projects.length === 0) {
+    return null
+  }
 
   return (
     <SectionWrapper
@@ -82,7 +91,7 @@ export async function ProjectsSection({ locale }: { locale: Locale }) {
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={`${t('viewProject')} — ${project.title}`}
-                          className="flex-1 p-3 bg-white rounded-2xl hover:bg-gray-100 transition-colors shadow-lg flex items-center justify-center hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                          className="flex-1 p-3 bg-white rounded-2xl hover:bg-muted transition-colors shadow-lg flex items-center justify-center hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                         >
                           <ExternalLink size={20} className="text-foreground" aria-hidden="true" />
                         </a>
@@ -93,7 +102,7 @@ export async function ProjectsSection({ locale }: { locale: Locale }) {
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={`${t('viewSource')} — ${project.title}`}
-                          className="flex-1 p-3 bg-white rounded-2xl hover:bg-gray-100 transition-colors shadow-lg flex items-center justify-center hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                          className="flex-1 p-3 bg-white rounded-2xl hover:bg-muted transition-colors shadow-lg flex items-center justify-center hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                         >
                           <Github size={20} className="text-foreground" aria-hidden="true" />
                         </a>
