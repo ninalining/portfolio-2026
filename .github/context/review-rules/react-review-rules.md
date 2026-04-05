@@ -32,6 +32,8 @@ Rules for React patterns and Next.js 16 App Router conventions.
 - [ ] next-hardcoded-url [major]: Flag if a base URL, API endpoint, or external URL is hardcoded as a string literal instead of using an environment variable
 - [ ] next-metadata-missing [minor]: Flag if a new `page.tsx` is added without a `metadata` export or `generateMetadata` function
 - [ ] next-error-boundary [minor]: Flag if a data-fetching Server Component route doesn't have a corresponding `error.tsx` in the same segment
+- [ ] next-intl-hook-in-server [major]: Flag if `useTranslations` (client-side hook from `next-intl`) is called in a Server Component (a file without `'use client'`) — use `await getTranslations(...)` instead
+- [ ] next-intl-server-in-client [major]: Flag if `getTranslations` (async server function from `next-intl/server`) is imported or called inside a `'use client'` component — use `useTranslations` instead
 
 ## False Positive Suppression
 
