@@ -13,6 +13,7 @@
   },
   "hero": {
     "ariaLabel": "Introduction",
+    "badge": "Welcome to my world",
     "greeting": "Hi, I'm",
     "title": "Senior Full-Stack Engineer",
     "description": "I build performant, accessible web applications with a focus on clean architecture and great user experience.",
