@@ -1,4 +1,4 @@
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react'
+import { Github, Linkedin, Mail, Sparkles } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
 import { profile } from '@/data/profile'
 import type { Locale } from '@/i18n/routing'
@@ -33,8 +33,8 @@ export async function HeroSection({ locale }: { locale: Locale }) {
         <div className="space-y-6 animate-fade-in-left">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-md text-sm font-medium text-foreground/70">
-            <span className="w-2 h-2 rounded-full bg-primary inline-block" />
-            {profile.location}
+            <Sparkles size={16} className="text-primary" aria-hidden="true" />
+            {t('badge')}
           </div>
 
           {/* Heading */}
@@ -60,11 +60,6 @@ export async function HeroSection({ locale }: { locale: Locale }) {
               className="group px-8 py-4 text-base hover:scale-105 hover:-translate-y-1"
             >
               {t('ctaProjects')}
-              <ArrowDown
-                size={18}
-                className="group-hover:translate-y-1 transition-transform"
-                aria-hidden="true"
-              />
             </Button>
             <Button
               href="#contact"
@@ -148,14 +143,6 @@ export async function HeroSection({ locale }: { locale: Locale }) {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-foreground/40 animate-bounce"
-        aria-hidden="true"
-      >
-        <ArrowDown size={16} />
       </div>
     </section>
   )

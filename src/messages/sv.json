@@ -13,6 +13,7 @@
   },
   "hero": {
     "ariaLabel": "Introduktion",
+    "badge": "Välkommen till min värld",
     "greeting": "Hej, jag heter",
     "title": "Senior Full-Stack-ingenjör",
     "description": "Jag bygger prestandaoptimerade, tillgängliga webbapplikationer med fokus på ren arkitektur och bra användarupplevelse.",
