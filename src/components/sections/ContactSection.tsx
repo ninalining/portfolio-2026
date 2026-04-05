@@ -1,28 +1,12 @@
 import { Mail, MapPin, Linkedin, Github } from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
-import { profile } from '@/data/profile'
+import type { Profile } from '@/types/profile'
 import type { Locale } from '@/i18n/routing'
-import type { ContactFormLabels } from '@/types/contact'
+import type { ContactFormLabels, ContactInfoItem, ContactSocialLink } from '@/types/contact'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { ContactForm } from '@/components/ui/ContactForm'
 
-interface ContactInfoItem {
-  Icon: LucideIcon
-  label: string
-  value: string
-  href: string | null
-  iconBg: string
-}
-
-interface ContactSocialLink {
-  Icon: LucideIcon
-  label: string
-  href: string
-  iconBg: string
-}
-
-export async function ContactSection({ locale }: { locale: Locale }) {
+export async function ContactSection({ locale, profile }: { locale: Locale; profile: Profile }) {
   const t = await getTranslations({ locale, namespace: 'contact' })
 
   const locationItem: ContactInfoItem | null = profile.location

@@ -1,33 +1,47 @@
+import { createElement } from 'react'
+import type { ReactElement } from 'react'
 import { Code2, Heart, Palette, Rocket } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
-import { profile } from '@/data/profile'
+import { richTextResolver } from '@storyblok/richtext'
+import type { FeatureCardColor, FeatureCardIcon } from '@/types/about'
+import type { HomeAboutContent } from '@/types/home'
+import type { Profile } from '@/types/profile'
 import type { Locale } from '@/i18n/routing'
 import { getInitials } from '@/lib/utils'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 
-export async function AboutSection({ locale }: { locale: Locale }) {
-  const t = await getTranslations({ locale, namespace: 'about' })
+const iconMap: Record<FeatureCardIcon, LucideIcon> = {
+  code: Code2,
+  palette: Palette,
+  rocket: Rocket,
+  heart: Heart,
+}
 
-  const features = [
-    {
-      icon: <Code2 size={28} aria-hidden="true" />,
-      title: t('feature1Title'),
-      description: t('feature1Desc'),
-      colorClass: 'bg-primary text-white',
-    },
-    {
-      icon: <Palette size={28} aria-hidden="true" />,
-      title: t('feature2Title'),
-      description: t('feature2Desc'),
-      colorClass: 'bg-yellow text-foreground',
-    },
-    {
-      icon: <Rocket size={28} aria-hidden="true" />,
-      title: t('feature3Title'),
-      description: t('feature3Desc'),
-      colorClass: 'bg-lavender text-white',
-    },
-  ]
+const colorMap: Record<FeatureCardColor, string> = {
+  primary: 'bg-primary text-white',
+  yellow: 'bg-yellow text-foreground',
+  lavender: 'bg-lavender text-white',
+}
+
+function resolveFeatureColor(feature: HomeAboutContent['features'][number]): FeatureCardColor {
+  return feature.accent?.[0]?.color ?? feature.color ?? 'primary'
+}
+
+export async function AboutSection({
+  locale,
+  profile,
+  about,
+}: {
+  locale: Locale
+  profile: Profile
+  about: HomeAboutContent
+}) {
+  const t = await getTranslations({ locale, namespace: 'about' })
+  const bioContent = richTextResolver<ReactElement>({
+    renderFn: (tag, attrs, children) => createElement(tag, attrs, children),
+    keyedResolvers: true,
+  }).render(about.bio)
 
   return (
     <SectionWrapper
@@ -99,27 +113,32 @@ export async function AboutSection({ locale }: { locale: Locale }) {
             {t('sectionTitle')}
           </h2>
 
-          <p className="text-lg text-foreground/70 mb-6 leading-relaxed">{t('bio1')}</p>
-          <p className="text-lg text-foreground/70 mb-10 leading-relaxed">{t('bio2')}</p>
+          <div className="text-lg text-foreground/70 mb-10 leading-relaxed prose prose-p:mb-4 prose-p:last:mb-0">
+            {bioContent}
+          </div>
 
           {/* Feature cards */}
           <div className="space-y-5">
-            {features.map((feature) => (
-              <div
-                key={feature.title}
-                className="group flex gap-4 items-start p-5 bg-cream rounded-2xl hover:shadow-lg transition-all hover:-translate-y-1"
-              >
+            {about.features.map((feature) => {
+              const Icon = iconMap[feature.icon] ?? Code2
+              const colorClass = colorMap[resolveFeatureColor(feature)] ?? 'bg-primary text-white'
+              return (
                 <div
-                  className={`shrink-0 w-14 h-14 ${feature.colorClass} rounded-2xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform`}
+                  key={feature._uid}
+                  className="group flex gap-4 items-start p-5 bg-cream rounded-2xl hover:shadow-lg transition-all hover:-translate-y-1"
                 >
-                  {feature.icon}
+                  <div
+                    className={`shrink-0 w-14 h-14 ${colorClass} rounded-2xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform`}
+                  >
+                    <Icon size={28} aria-hidden="true" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl mb-1 text-foreground font-medium">{feature.title}</h3>
+                    <p className="text-foreground/60 leading-relaxed">{feature.description}</p>
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-xl mb-1 text-foreground font-medium">{feature.title}</h3>
-                  <p className="text-foreground/60 leading-relaxed">{feature.description}</p>
-                </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </div>

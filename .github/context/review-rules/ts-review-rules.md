@@ -21,6 +21,14 @@ Rules for TypeScript quality and type safety.
 - [ ] ts-todo-untracked [minor]: Flag if `// TODO` or `// FIXME` is added without a GitHub issue reference
 - [ ] ts-magic-number [minor]: Flag if a numeric literal is used inline without a named constant (exception: 0, 1, -1, 100 in arithmetic)
 
+## Type Colocation
+
+- [ ] ts-type-colocation [major]: Flag if a `type` or `interface` is defined inline inside a
+      `.tsx` file — all type/interface definitions must live in dedicated `.ts` files under `src/types/`;
+      `.tsx` files may only import types, never define them
+- [ ] ts-type-import-alias [minor]: Flag if a type is imported via a relative path (e.g. `'../types/foo'`)
+      instead of the `@/types/` path alias
+
 ## False Positive Suppression
 
 Do **NOT** flag:
@@ -30,3 +38,4 @@ Do **NOT** flag:
 - `_`-prefixed variables (intentionally unused)
 - `0`, `1`, `-1`, `100` in arithmetic or percentage expressions
 - `console.error` / `console.warn` calls
+- Inline `type` annotations on local variables or destructuring (only standalone `type`/`interface` declarations are in scope)

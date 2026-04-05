@@ -1,11 +1,20 @@
 import { Github, Linkedin, Mail, Sparkles } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
-import { profile } from '@/data/profile'
+import type { HeroContent } from '@/types/home'
+import type { Profile } from '@/types/profile'
 import type { Locale } from '@/i18n/routing'
 import { Button } from '@/components/ui/Button'
 import { getInitials } from '@/lib/utils'
 
-export async function HeroSection({ locale }: { locale: Locale }) {
+export async function HeroSection({
+  locale,
+  profile,
+  hero,
+}: {
+  locale: Locale
+  profile: Profile
+  hero: HeroContent
+}) {
   const t = await getTranslations({ locale, namespace: 'hero' })
 
   return (
@@ -34,7 +43,7 @@ export async function HeroSection({ locale }: { locale: Locale }) {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-md text-sm font-medium text-foreground/70">
             <Sparkles size={16} className="text-primary" aria-hidden="true" />
-            {t('badge')}
+            {hero.badge || t('badge')}
           </div>
 
           {/* Heading */}
@@ -46,11 +55,13 @@ export async function HeroSection({ locale }: { locale: Locale }) {
           </h1>
 
           {/* Title */}
-          <p className="text-xl md:text-2xl text-foreground/70 font-medium">{t('title')}</p>
+          <p className="text-xl md:text-2xl text-foreground/70 font-medium">
+            {hero.title || t('title')}
+          </p>
 
           {/* Description */}
           <p className="text-base text-foreground/60 max-w-md leading-relaxed">
-            {t('description')}
+            {hero.description || t('description')}
           </p>
 
           {/* CTA buttons */}

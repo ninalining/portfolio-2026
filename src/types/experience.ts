@@ -4,6 +4,7 @@ export interface Experience {
   role: string
   startDate: string
   endDate: string | null
+  current: boolean
   location: string
   responsibilities: string[]
   technologies?: string[]
