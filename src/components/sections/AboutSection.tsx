@@ -35,9 +35,10 @@ export async function AboutSection({ locale }: { locale: Locale }) {
       aria-label={t('sectionTitle')}
       className="bg-white relative overflow-hidden"
     >
-      {/* SVG wave decoration */}
+      {/* Full-width SVG wave — w-screen + -translate-x-1/2 escapes max-w-6xl,
+          clipped by the section's overflow-hidden. Matches Figma's soft teal wave. */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-32 opacity-10 pointer-events-none"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-screen h-32 opacity-15 pointer-events-none"
         aria-hidden="true"
       >
         <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-full">
