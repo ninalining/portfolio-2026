@@ -2,23 +2,26 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import { Globe, Menu, X } from 'lucide-react'
+import { Globe, Menu, X, User, Briefcase, Award, Mail, Clock, Linkedin, Github } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useRouter, usePathname } from '@/i18n/navigation'
 import { useLocale } from 'next-intl'
 import type { NavLink } from '@/types/navigation'
+import { profile } from '@/data/profile'
 import { cn } from '@/lib/utils'
 
 const LOGO_SIZE = 32
 const ICON_SIZE_SM = 18
 const ICON_SIZE_MD = 24
+const ICON_SIZE_LG = 20
+const SCROLL_THRESHOLD = 50
 
 const NAV_LINKS: NavLink[] = [
-  { labelKey: 'about', href: '#about' },
-  { labelKey: 'experience', href: '#experience' },
-  { labelKey: 'skills', href: '#skills' },
-  { labelKey: 'projects', href: '#projects' },
-  { labelKey: 'contact', href: '#contact' },
+  { labelKey: 'about', href: '#about', Icon: User },
+  { labelKey: 'experience', href: '#experience', Icon: Clock },
+  { labelKey: 'skills', href: '#skills', Icon: Award },
+  { labelKey: 'projects', href: '#projects', Icon: Briefcase },
+  { labelKey: 'contact', href: '#contact', Icon: Mail },
 ]
 
 const LOCALES = [
@@ -28,7 +31,7 @@ const LOCALES = [
 
 const FOCUSABLE_SELECTORS = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
 
-export function Navigation() {
+export function Navigation(): React.ReactElement {
   const t = useTranslations('navigation')
   const locale = useLocale()
   const router = useRouter()
@@ -40,7 +43,7 @@ export function Navigation() {
 
   const hamburgerRef = useRef<HTMLButtonElement>(null)
   const globeRef = useRef<HTMLButtonElement>(null)
-  const overlayRef = useRef<HTMLDivElement>(null)
+  const panelRef = useRef<HTMLDivElement>(null)
   const langDropdownRef = useRef<HTMLDivElement>(null)
 
   const closeMenu = useCallback(() => {
@@ -58,20 +61,32 @@ export function Navigation() {
 
   // Scroll detection
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50)
+    const handleScroll = () => setIsScrolled(window.scrollY > SCROLL_THRESHOLD)
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // inert: set imperatively to avoid React 18 hydration warning (inert is a boolean HTML attr
+  // serialised as empty string by SSR; React 19+ supports it natively as a prop)
+  useEffect(() => {
+    const panel = panelRef.current
+    if (!panel) return
+    if (menuOpen) {
+      panel.removeAttribute('inert')
+    } else {
+      panel.setAttribute('inert', '')
+    }
+  }, [menuOpen])
 
   // Scroll lock + focus trap when mobile menu opens
   useEffect(() => {
     if (!menuOpen) return
     document.body.style.overflow = 'hidden'
 
-    const overlay = overlayRef.current
-    if (!overlay) return
+    const panel = panelRef.current
+    if (!panel) return
 
-    const focusable = Array.from(overlay.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTORS))
+    const focusable = Array.from(panel.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTORS))
     focusable[0]?.focus()
 
     function handleKeyDown(e: KeyboardEvent) {
@@ -133,44 +148,57 @@ export function Navigation() {
       className={cn(
         'sticky top-0 z-50 w-full transition-all duration-300',
         isScrolled
-          ? 'bg-cream/95 backdrop-blur-md border-b border-border/40 shadow-sm'
-          : 'bg-transparent border-b border-transparent',
+          ? 'bg-white/95 backdrop-blur-md border-b border-border/40 shadow-sm py-3'
+          : 'bg-cream border-b border-transparent py-5',
       )}
     >
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <a
           href="#hero"
           aria-label="Nina Li — back to top"
-          className="flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+          className={cn(
+            'flex items-center gap-2 transition-transform duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm',
+            isScrolled ? 'scale-95' : 'scale-100',
+          )}
         >
           <Image src="/logo-mark.svg" width={LOGO_SIZE} height={LOGO_SIZE} alt="NL logo" />
+          <span className="font-bold text-foreground text-lg hidden sm:block">Nina Li</span>
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6" aria-label="Main navigation">
-          {NAV_LINKS.map((link) => (
+        <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
+          {NAV_LINKS.map(({ labelKey, href, Icon }) => (
             <a
-              key={link.href}
-              href={link.href}
-              className="text-xl font-medium text-foreground/80 hover:text-foreground hover:bg-primary/10 px-4 py-2 rounded-2xl transition-all underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              key={href}
+              href={href}
+              className="group flex items-center gap-2 px-5 py-2.5 rounded-2xl transition-all text-foreground/80 hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              {t(link.labelKey as Parameters<typeof t>[0])}
+              <Icon
+                size={ICON_SIZE_SM}
+                aria-hidden="true"
+                className="group-hover:scale-110 transition-transform shrink-0"
+              />
+              <span className="font-medium">{t(labelKey as Parameters<typeof t>[0])}</span>
             </a>
           ))}
 
           {/* Language dropdown */}
-          <div className="relative" ref={langDropdownRef}>
+          <div className="relative ml-2" ref={langDropdownRef}>
             <button
               ref={globeRef}
               aria-label={t('languageMenu')}
               aria-expanded={langOpen}
               aria-haspopup="menu"
               onClick={() => setLangOpen((o) => !o)}
-              className="flex items-center gap-1 text-xl font-medium text-foreground/80 hover:text-foreground hover:bg-primary/10 px-3 py-2 rounded-2xl transition-all underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="group flex items-center gap-1 px-3 py-2.5 rounded-2xl transition-all text-foreground/80 hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              <Globe size={ICON_SIZE_SM} aria-hidden="true" />
-              <span className="uppercase">{locale}</span>
+              <Globe
+                size={ICON_SIZE_SM}
+                aria-hidden="true"
+                className="group-hover:scale-110 transition-transform"
+              />
+              <span className="uppercase font-medium">{locale}</span>
             </button>
 
             {langOpen && (
@@ -211,41 +239,64 @@ export function Navigation() {
         </button>
       </div>
 
-      {/* Mobile overlay */}
-      {menuOpen && (
+      {/* Mobile: backdrop + slide-in panel */}
+      <div
+        className={cn(
+          'fixed inset-0 z-50 md:hidden transition-all duration-300',
+          menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none',
+        )}
+      >
+        {/* Backdrop */}
         <div
-          ref={overlayRef}
+          className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+          onClick={closeMenu}
+          aria-hidden="true"
+        />
+
+        {/* Slide-in panel */}
+        <div
+          ref={panelRef}
           role="dialog"
           aria-modal="true"
           aria-label="Navigation menu"
-          className="fixed inset-0 z-50 flex flex-col bg-cream md:hidden"
+          className={cn(
+            'absolute top-0 right-0 bottom-0 w-72 bg-white shadow-2xl flex flex-col transform transition-transform duration-300',
+            menuOpen ? 'translate-x-0' : 'translate-x-full',
+          )}
         >
-          <div className="flex items-center justify-between px-6 h-16 border-b border-border/40">
+          {/* Panel header */}
+          <div className="flex items-center justify-between px-6 h-16 border-b border-border/20 shrink-0">
             <Image src="/logo-mark.svg" width={LOGO_SIZE} height={LOGO_SIZE} alt="NL logo" />
             <button
               aria-label={t('closeMenu')}
               onClick={closeMenu}
-              className="p-2 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+              className="w-10 h-10 bg-muted rounded-2xl flex items-center justify-center hover:bg-muted/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <X size={ICON_SIZE_MD} aria-hidden="true" />
             </button>
           </div>
 
-          <nav className="flex flex-col gap-2 px-6 pt-8" aria-label="Mobile navigation">
-            {NAV_LINKS.map((link) => (
+          {/* Nav items */}
+          <nav className="flex flex-col gap-2 px-4 pt-6" aria-label="Mobile navigation">
+            {NAV_LINKS.map(({ labelKey, href, Icon }) => (
               <a
-                key={link.href}
-                href={link.href}
+                key={href}
+                href={href}
                 onClick={closeMenu}
-                className="text-2xl font-medium text-foreground py-3 border-b border-border/20 hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="group flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-primary hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                {t(link.labelKey as Parameters<typeof t>[0])}
+                <span className="w-10 h-10 bg-cream group-hover:bg-white/20 rounded-xl flex items-center justify-center transition-colors shrink-0">
+                  <Icon size={ICON_SIZE_SM} aria-hidden="true" />
+                </span>
+                <span className="text-lg font-medium">
+                  {t(labelKey as Parameters<typeof t>[0])}
+                </span>
               </a>
             ))}
           </nav>
 
-          {/* Language switcher in mobile overlay */}
-          <div className="flex gap-4 px-6 pt-8">
+          {/* Language switcher */}
+          <div className="flex gap-4 px-6 pt-6">
             {LOCALES.map(({ code, label }) => (
               <button
                 key={code}
@@ -264,8 +315,37 @@ export function Navigation() {
               </button>
             ))}
           </div>
+
+          {/* Social links */}
+          <div className="mt-auto px-6 pb-8 pt-8 border-t border-border/20">
+            <p className="text-sm text-muted-foreground mb-4">{t('followLabel')}</p>
+            <ul className="flex gap-3">
+              <li>
+                <a
+                  href={profile.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center text-white hover:scale-110 transition-transform"
+                >
+                  <Linkedin size={ICON_SIZE_LG} aria-hidden="true" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href={profile.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                  className="w-12 h-12 bg-yellow rounded-2xl flex items-center justify-center text-foreground hover:scale-110 transition-transform"
+                >
+                  <Github size={ICON_SIZE_LG} aria-hidden="true" />
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-      )}
+      </div>
     </header>
   )
 }
