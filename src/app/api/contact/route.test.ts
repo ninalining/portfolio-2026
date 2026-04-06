@@ -71,7 +71,9 @@ describe('POST /api/contact', () => {
     })
 
     it('rejects message over MAX_MESSAGE_LENGTH', async () => {
-      const res = await POST(makeRequest({ ...validBody, message: 'a'.repeat(MAX_MESSAGE_LENGTH + 1) }))
+      const res = await POST(
+        makeRequest({ ...validBody, message: 'a'.repeat(MAX_MESSAGE_LENGTH + 1) }),
+      )
       expect(res.status).toBe(422)
     })
 

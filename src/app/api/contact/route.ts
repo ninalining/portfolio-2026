@@ -28,19 +28,28 @@ export async function POST(request: Request): Promise<NextResponse> {
     return NextResponse.json({ error: 'Name is required.' }, { status: 422 })
   }
   if (name.length > MAX_NAME_LENGTH) {
-    return NextResponse.json({ error: `Name must be ${MAX_NAME_LENGTH} characters or fewer.` }, { status: 422 })
+    return NextResponse.json(
+      { error: `Name must be ${MAX_NAME_LENGTH} characters or fewer.` },
+      { status: 422 },
+    )
   }
   if (!email || typeof email !== 'string' || !isValidEmail(email)) {
     return NextResponse.json({ error: 'A valid email address is required.' }, { status: 422 })
   }
   if (email.length > MAX_EMAIL_LENGTH) {
-    return NextResponse.json({ error: `Email must be ${MAX_EMAIL_LENGTH} characters or fewer.` }, { status: 422 })
+    return NextResponse.json(
+      { error: `Email must be ${MAX_EMAIL_LENGTH} characters or fewer.` },
+      { status: 422 },
+    )
   }
   if (!message || typeof message !== 'string' || message.trim().length === 0) {
     return NextResponse.json({ error: 'Message is required.' }, { status: 422 })
   }
   if (message.length > MAX_MESSAGE_LENGTH) {
-    return NextResponse.json({ error: `Message must be ${MAX_MESSAGE_LENGTH} characters or fewer.` }, { status: 422 })
+    return NextResponse.json(
+      { error: `Message must be ${MAX_MESSAGE_LENGTH} characters or fewer.` },
+      { status: 422 },
+    )
   }
 
   const to = process.env.CONTACT_TO_EMAIL
@@ -68,7 +77,10 @@ export async function POST(request: Request): Promise<NextResponse> {
 
   if (error) {
     console.error('[contact] Resend error:', error)
-    return NextResponse.json({ error: 'Failed to send message. Please try again.' }, { status: 500 })
+    return NextResponse.json(
+      { error: 'Failed to send message. Please try again.' },
+      { status: 500 },
+    )
   }
 
   return NextResponse.json({ ok: true }, { status: 200 })

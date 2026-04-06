@@ -4,7 +4,13 @@ import { useState } from 'react'
 import { Send, CheckCircle } from 'lucide-react'
 import type { ContactFormData, ContactFormStatus } from '@/types/contact'
 import type { ContactFormLabels } from '@/types/contact'
-import { type FieldErrors, validateContactForm, MAX_NAME_LENGTH, MAX_EMAIL_LENGTH, MAX_MESSAGE_LENGTH } from '@/lib/contact-validation'
+import {
+  type FieldErrors,
+  validateContactForm,
+  MAX_NAME_LENGTH,
+  MAX_EMAIL_LENGTH,
+  MAX_MESSAGE_LENGTH,
+} from '@/lib/contact-validation'
 
 interface ContactFormProps {
   labels: ContactFormLabels
