@@ -14,15 +14,14 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 })
 
+const isPreview = process.env.STORYBLOK_IS_PREVIEW === 'true'
+
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const locale = await getLocale()
-  return (
-    <StoryblokProvider>
-      <html lang={locale}>
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          {children}
-        </body>
-      </html>
-    </StoryblokProvider>
+  const html = (
+    <html lang={locale}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+    </html>
   )
+  return isPreview ? <StoryblokProvider>{html}</StoryblokProvider> : html
 }
