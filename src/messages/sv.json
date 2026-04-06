@@ -59,7 +59,7 @@
   },
   "contact": {
     "sectionTitle": "Kontakta Mig",
-    "sectionSubtitle": "Har du ett projekt eller en idé? Hör gärna av dig.",
+    "sectionSubtitle": "Hör gärna av dig — jag tar gärna kontakt.",
     "letsTalkHeading": "Låt oss prata!",
     "letsTalkDesc": "Jag är alltid öppen för nya möjligheter och samarbeten. Kontakta mig via någon av mina kanaler.",
     "emailLabel": "E-post",
@@ -69,12 +69,26 @@
     "namePlaceholder": "Ditt namn",
     "emailPlaceholder": "din@epost.se",
     "messageLabel": "Meddelande",
-    "messagePlaceholder": "Berätta om ditt projekt...",
+    "messagePlaceholder": "Lämna ett meddelande…",
     "submit": "Skicka meddelande",
     "successMessage": "Tack för ditt meddelande! Jag återkommer snart."
   },
   "footer": {
     "rights": "Alla rättigheter förbehållna.",
     "tagline": "Skapad med passion • Designad för bra upplevelser"
+  },
+  "chat": {
+    "fabLabel": "AI-assistent online",
+    "openLabel": "Öppna AI-chattassistenten",
+    "closeLabel": "Stäng chatten",
+    "headerTitle": "AI-assistent",
+    "headerSubtitle": "Drivs av Groq · Fråga mig vad som helst",
+    "welcomeMessage": "Hej! Jag är Ninas AI-assistent. Fråga mig om hennes erfarenhet, projekt eller kompetenser!",
+    "suggestedLabel": "Föreslagna frågor:",
+    "q1": "Vilka tekniker använder hon?",
+    "q2": "Har hon erfarenhet av svenska projekt?",
+    "q3": "Är hon öppen för nya möjligheter?",
+    "placeholder": "Fråga mig vad som helst…",
+    "sendLabel": "Skicka meddelande"
   }
 }
