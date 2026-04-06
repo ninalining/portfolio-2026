@@ -29,13 +29,6 @@
   --ring: oklch(0.708 0 0);
   --radius: 1.5rem;
 
-  /* Brand color palette */
-  --color-mint: #8bc6bc;
-  --color-mint-light: #a8d5ba;
-  --color-cream: #fffef0;
-  --color-yellow: #f2dd72;
-  --color-lavender: #c5b9d6;
-
   /* Font weights */
   --font-weight-medium: 500;
   --font-weight-normal: 400;
@@ -85,7 +78,8 @@
   --color-switch-background: var(--switch-background);
   --color-ring: var(--ring);
 
-  /* Brand tokens as Tailwind classes (bg-cream, text-mint, etc.) */
+  /* Brand tokens as Tailwind classes (bg-cream, text-mint, etc.)
+     Values are the single source of truth — not duplicated in :root. */
   --color-mint: #8bc6bc;
   --color-mint-light: #a8d5ba;
   --color-cream: #fffef0;
@@ -268,4 +262,22 @@
 
 .delay-500 {
   animation-delay: 0.5s;
+}
+
+/* ============================================================
+   Respect reduced-motion preference (WCAG 2.1 – SC 2.3.3)
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-fade-in-left,
+  .animate-fade-in-right,
+  .animate-slide-in-top,
+  .animate-float,
+  .animate-pulse-slow {
+    animation: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
 }
