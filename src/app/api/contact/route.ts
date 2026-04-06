@@ -14,8 +14,6 @@ interface ContactPayload {
   message: string
 }
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 export async function POST(request: Request): Promise<NextResponse> {
   let body: unknown
   try {
@@ -57,6 +55,8 @@ export async function POST(request: Request): Promise<NextResponse> {
   const safeMessage = stripControlChars(message.trim())
 
   const from = process.env.CONTACT_FROM_EMAIL || 'Portfolio Contact <onboarding@resend.dev>'
+
+  const resend = new Resend(process.env.RESEND_API_KEY)
 
   const { error } = await resend.emails.send({
     from,
