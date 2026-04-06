@@ -167,7 +167,7 @@ export function Navigation({
             isScrolled ? 'scale-95' : 'scale-100',
           )}
         >
-          <Image src="/logo-mark.svg" width={LOGO_SIZE} height={LOGO_SIZE} alt="NL logo" />
+          <Image src="/logo.svg" width={LOGO_SIZE} height={LOGO_SIZE} alt="NL logo" />
           <span className="font-bold text-foreground text-lg hidden sm:block">Nina Li</span>
         </a>
 
@@ -271,7 +271,7 @@ export function Navigation({
         >
           {/* Panel header */}
           <div className="flex items-center justify-between px-6 h-16 border-b border-border/20 shrink-0">
-            <Image src="/logo-mark.svg" width={LOGO_SIZE} height={LOGO_SIZE} alt="NL logo" />
+            <Image src="/logo.svg" width={LOGO_SIZE} height={LOGO_SIZE} alt="NL logo" />
             <button
               aria-label={t('closeMenu')}
               onClick={closeMenu}
