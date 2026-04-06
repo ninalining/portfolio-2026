@@ -139,4 +139,3 @@ describe('stripControlChars()', () => {
     expect(stripControlChars('')).toBe('')
   })
 })
-

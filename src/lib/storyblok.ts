@@ -39,6 +39,12 @@ export const getProfile = cache(async function getProfile(): Promise<Profile> {
       github: c.github,
       linkedin: c.linkedin,
       location: c.location ?? undefined,
+      availability: c.availability ?? undefined,
+      workType: c.work_type ?? undefined,
+      workLocation: c.work_location ?? undefined,
+      visaStatus: c.visa_status ?? undefined,
+      languages: c.languages ?? undefined,
+      portfolioTech: c.portfolio_tech ?? undefined,
       stats: {
         yearsValue: c.stats_years ?? '',
         projectsValue: c.stats_projects ?? '',

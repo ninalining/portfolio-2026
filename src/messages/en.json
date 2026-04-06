@@ -59,7 +59,7 @@
   },
   "contact": {
     "sectionTitle": "Contact",
-    "sectionSubtitle": "Have a project or idea? I'd love to hear from you.",
+    "sectionSubtitle": "Feel free to reach out — I'd love to connect.",
     "letsTalkHeading": "Let's Talk!",
     "letsTalkDesc": "I'm always open to new opportunities and collaborations. Reach out through any of my channels.",
     "emailLabel": "Email",
@@ -69,12 +69,26 @@
     "namePlaceholder": "Your name",
     "emailPlaceholder": "your@email.com",
     "messageLabel": "Message",
-    "messagePlaceholder": "Tell me about your project...",
+    "messagePlaceholder": "Leave a message…",
     "submit": "Send Message",
     "successMessage": "Thank you for your message! I'll get back to you soon."
   },
   "footer": {
     "rights": "All rights reserved.",
     "tagline": "Built with passion • Designed for great experiences"
+  },
+  "chat": {
+    "fabLabel": "AI Assistant Online",
+    "openLabel": "Open AI chat assistant",
+    "closeLabel": "Close chat",
+    "headerTitle": "AI Assistant",
+    "headerSubtitle": "Powered by Groq · Ask me anything",
+    "welcomeMessage": "Hi! I'm Nina's AI assistant. Ask me about her experience, projects, or skills!",
+    "suggestedLabel": "Suggested questions:",
+    "q1": "What's her tech stack?",
+    "q2": "Any Swedish-language project experience?",
+    "q3": "Is she open to new opportunities?",
+    "placeholder": "Ask me anything…",
+    "sendLabel": "Send message"
   }
 }

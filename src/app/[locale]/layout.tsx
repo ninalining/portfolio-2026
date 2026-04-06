@@ -6,7 +6,9 @@ import { defaultLocale, isSupportedLocale, locales, ogLocaleMap } from '@/i18n/r
 import type { LocaleLayoutProps } from '@/types/locale'
 import { Navigation } from '@/components/layout/Navigation'
 import { Footer } from '@/components/layout/Footer'
+import { ChatWidget } from '@/components/ui/ChatWidget'
 import { getProfile } from '@/lib/storyblok'
+import type { ChatLocale } from '@/types/chat'
 
 export function generateStaticParams(): { locale: string }[] {
   return locales.map((locale) => ({ locale }))
@@ -55,6 +57,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
       <Navigation linkedin={profile.linkedin} github={profile.github} />
       {children}
       <Footer locale={locale} profile={profile} />
+      <ChatWidget locale={locale as ChatLocale} />
     </NextIntlClientProvider>
   )
 }
