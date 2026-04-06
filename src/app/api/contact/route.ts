@@ -1,16 +1,17 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
-import { isValidEmail, MAX_EMAIL_LENGTH, MAX_MESSAGE_LENGTH, MAX_NAME_LENGTH } from '@/lib/contact-validation'
+import {
+  isValidEmail,
+  MAX_EMAIL_LENGTH,
+  MAX_MESSAGE_LENGTH,
+  MAX_NAME_LENGTH,
+  stripControlChars,
+} from '@/lib/contact-validation'
 
 interface ContactPayload {
   name: string
   email: string
   message: string
-}
-
-/** Strip ASCII control characters (\x00–\x1F, \x7F) to prevent email header injection */
-function stripControlChars(value: string): string {
-  return value.replace(/[\x00-\x1F\x7F]/g, '')
 }
 
 const resend = new Resend(process.env.RESEND_API_KEY)
@@ -55,7 +56,7 @@ export async function POST(request: Request): Promise<NextResponse> {
   const safeEmail = stripControlChars(email.trim())
   const safeMessage = stripControlChars(message.trim())
 
-  const from = process.env.CONTACT_FROM_EMAIL ?? 'Portfolio Contact <onboarding@resend.dev>'
+  const from = process.env.CONTACT_FROM_EMAIL || 'Portfolio Contact <onboarding@resend.dev>'
 
   const { error } = await resend.emails.send({
     from,

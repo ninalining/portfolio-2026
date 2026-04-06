@@ -34,3 +34,8 @@ export function validateContactForm(data: ContactFormData): FieldErrors {
   }
   return errors
 }
+
+/** Strip ASCII control characters (\x00–\x1F, \x7F) to prevent email header injection */
+export function stripControlChars(value: string): string {
+  return value.replace(/[\x00-\x1F\x7F]/g, '')
+}
