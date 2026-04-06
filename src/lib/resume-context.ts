@@ -137,9 +137,7 @@ export async function getResumeContext(locale: string): Promise<string> {
   if (homeRaw) {
     const body = homeRaw.body ?? []
     const hero = body.find((b) => b.component === 'hero-section') as HeroSectionRaw | undefined
-    const about = body.find((b) => b.component === 'about-section') as
-      | AboutSectionRaw
-      | undefined
+    const about = body.find((b) => b.component === 'about-section') as AboutSectionRaw | undefined
     const skills = body.find((b) => b.component === 'skills-section') as
       | SkillsSectionRaw
       | undefined
@@ -168,9 +166,7 @@ export async function getResumeContext(locale: string): Promise<string> {
         })
         .join('\n')
       const extraLine = splitCsvList(skills.extra).join(', ')
-      sections.push(
-        `## Skills\n${catLines}${extraLine ? `\n- **Other tools**: ${extraLine}` : ''}`,
-      )
+      sections.push(`## Skills\n${catLines}${extraLine ? `\n- **Other tools**: ${extraLine}` : ''}`)
     }
   }
 
@@ -186,7 +182,9 @@ export async function getResumeContext(locale: string): Promise<string> {
         const period = c.current
           ? `${c.start_date ?? ''} – Present`
           : `${c.start_date ?? ''} – ${c.end_date ?? ''}`
-        const resp = splitMultilineList(c.responsibilities).map((r) => `  - ${r}`).join('\n')
+        const resp = splitMultilineList(c.responsibilities)
+          .map((r) => `  - ${r}`)
+          .join('\n')
         const tech = splitCsvList(c.technologies).join(', ')
         return (
           `### ${c.company ?? s.name} — ${c.role ?? ''} (${period})\n` +

@@ -71,7 +71,14 @@ export async function POST(req: Request): Promise<Response> {
     })
   }
 
-  if (rawMessages.some((m) => typeof m !== 'object' || m === null || typeof (m as Record<string, unknown>).role !== 'string')) {
+  if (
+    rawMessages.some(
+      (m) =>
+        typeof m !== 'object' ||
+        m === null ||
+        typeof (m as Record<string, unknown>).role !== 'string',
+    )
+  ) {
     return new Response(JSON.stringify({ error: 'Invalid messages format.' }), {
       status: 400,
       headers: { 'Content-Type': 'application/json' },
@@ -112,10 +119,10 @@ ${resumeContext}`
 
   // Stream response
   const result = streamText({
-    model: groq('llama-3.3-70b-versatile'),
+    model: groq(GROQ_MODEL),
     system: systemPrompt,
     messages: modelMessages,
-    maxOutputTokens: 512,
+    maxOutputTokens: MAX_OUTPUT_TOKENS,
   })
 
   return result.toUIMessageStreamResponse()
