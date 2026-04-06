@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Send, CheckCircle } from 'lucide-react'
 import type { ContactFormData, ContactFormStatus } from '@/types/contact'
 import type { ContactFormLabels } from '@/types/contact'
-import { type FieldErrors, validateContactForm } from '@/lib/contact-validation'
+import { type FieldErrors, validateContactForm, MAX_NAME_LENGTH, MAX_EMAIL_LENGTH, MAX_MESSAGE_LENGTH } from '@/lib/contact-validation'
 
 interface ContactFormProps {
   labels: ContactFormLabels
@@ -81,6 +81,7 @@ export function ContactForm({ labels }: ContactFormProps) {
             aria-required="true"
             aria-invalid={!!fieldErrors.name}
             aria-describedby={fieldErrors.name ? 'contact-name-error' : undefined}
+            maxLength={MAX_NAME_LENGTH}
             value={formData.name}
             onChange={(e) => {
               setFormData({ ...formData, name: e.target.value })
@@ -108,6 +109,7 @@ export function ContactForm({ labels }: ContactFormProps) {
             aria-required="true"
             aria-invalid={!!fieldErrors.email}
             aria-describedby={fieldErrors.email ? 'contact-email-error' : undefined}
+            maxLength={MAX_EMAIL_LENGTH}
             value={formData.email}
             onChange={(e) => {
               setFormData({ ...formData, email: e.target.value })
@@ -138,6 +140,7 @@ export function ContactForm({ labels }: ContactFormProps) {
             aria-invalid={!!fieldErrors.message}
             aria-describedby={fieldErrors.message ? 'contact-message-error' : undefined}
             rows={6}
+            maxLength={MAX_MESSAGE_LENGTH}
             value={formData.message}
             onChange={(e) => {
               setFormData({ ...formData, message: e.target.value })
