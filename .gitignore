@@ -43,8 +43,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# MCP server config (contains API tokens)
-.vscode/mcp.json
+# VS Code workspace settings — committed intentionally (no secrets)
 
 # Spec-driven workflow artifacts (local planning docs, not for CI)
 specs/
