@@ -10,9 +10,9 @@ import type { NavLink } from '@/types/navigation'
 import { cn } from '@/lib/utils'
 
 const LOGO_SIZE = 32
-const ICON_SIZE_SM = 18
-const ICON_SIZE_MD = 24
-const ICON_SIZE_LG = 20
+const ICON_SIZE_NAV = 20
+const ICON_SIZE_MOBILE = 24
+const ICON_SIZE_SOCIAL = 18
 const SCROLL_THRESHOLD = 50
 
 const NAV_LINKS: NavLink[] = [
@@ -180,7 +180,7 @@ export function Navigation({
               className="group flex items-center gap-2 px-5 py-2.5 rounded-2xl transition-all text-foreground/80 hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <Icon
-                size={ICON_SIZE_SM}
+                size={ICON_SIZE_NAV}
                 aria-hidden="true"
                 className="group-hover:scale-110 transition-transform shrink-0"
               />
@@ -199,7 +199,7 @@ export function Navigation({
               className="group flex items-center gap-1 px-3 py-2.5 rounded-2xl transition-all text-foreground/80 hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <Globe
-                size={ICON_SIZE_SM}
+                size={ICON_SIZE_NAV}
                 aria-hidden="true"
                 className="group-hover:scale-110 transition-transform"
               />
@@ -240,7 +240,7 @@ export function Navigation({
             isScrolled ? 'bg-primary text-white' : 'bg-white text-foreground shadow-md',
           )}
         >
-          <Menu size={ICON_SIZE_MD} aria-hidden="true" />
+          <Menu size={ICON_SIZE_MOBILE} aria-hidden="true" />
         </button>
       </div>
 
@@ -277,7 +277,7 @@ export function Navigation({
               onClick={closeMenu}
               className="w-10 h-10 bg-muted rounded-2xl flex items-center justify-center hover:bg-muted/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              <X size={ICON_SIZE_MD} aria-hidden="true" />
+              <X size={ICON_SIZE_MOBILE} aria-hidden="true" />
             </button>
           </div>
 
@@ -291,7 +291,7 @@ export function Navigation({
                 className="group flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-primary hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <span className="w-10 h-10 bg-cream group-hover:bg-white/20 rounded-xl flex items-center justify-center transition-colors shrink-0">
-                  <Icon size={ICON_SIZE_SM} aria-hidden="true" />
+                  <Icon size={ICON_SIZE_NAV} aria-hidden="true" />
                 </span>
                 <span className="text-lg font-medium">
                   {t(labelKey as Parameters<typeof t>[0])}
@@ -333,7 +333,7 @@ export function Navigation({
                   aria-label="LinkedIn"
                   className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center text-white hover:scale-110 transition-transform"
                 >
-                  <Linkedin size={ICON_SIZE_LG} aria-hidden="true" />
+                  <Linkedin size={ICON_SIZE_SOCIAL} aria-hidden="true" />
                 </a>
               </li>
               <li>
@@ -344,7 +344,7 @@ export function Navigation({
                   aria-label="GitHub"
                   className="w-12 h-12 bg-yellow rounded-2xl flex items-center justify-center text-foreground hover:scale-110 transition-transform"
                 >
-                  <Github size={ICON_SIZE_LG} aria-hidden="true" />
+                  <Github size={ICON_SIZE_SOCIAL} aria-hidden="true" />
                 </a>
               </li>
             </ul>

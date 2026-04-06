@@ -39,4 +39,9 @@ describe('getInitials()', () => {
   it('returns single initial for one-word name', () => {
     expect(getInitials('Madonna')).toBe('M')
   })
+
+  it('returns empty string for empty input', () => {
+    expect(getInitials('')).toBe('')
+    expect(getInitials('   ')).toBe('')
+  })
 })

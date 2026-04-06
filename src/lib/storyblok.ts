@@ -5,53 +5,17 @@ import type { Experience } from '@/types/experience'
 import type { HomePageContent, HomeFeatureCard } from '@/types/home'
 import type { Profile } from '@/types/profile'
 import type { Project, ProjectAccent } from '@/types/project'
-import type { SkillCategoryKey, SkillsSectionContent } from '@/types/skill'
+import type { SkillsSectionContent } from '@/types/skill'
+import {
+  getLanguage,
+  isSkillCategoryKey,
+  parseSortOrder,
+  resolveAccent,
+  splitCsvList,
+  splitMultilineList,
+} from './storyblok-utils'
 
 const version = process.env.NODE_ENV === 'production' ? 'published' : 'draft'
-
-function getLanguage(locale: string) {
-  return locale === 'en' ? 'default' : locale
-}
-
-function splitMultilineList(value: string | undefined): string[] {
-  return value
-    ? value
-        .split(/\r?\n/)
-        .map((item) => item.trim())
-        .filter(Boolean)
-    : []
-}
-
-function splitCsvList(value: string | undefined): string[] {
-  return value
-    ? value
-        .split(',')
-        .map((item) => item.trim())
-        .filter(Boolean)
-    : []
-}
-
-function parseSortOrder(value: string | number | undefined): number {
-  if (typeof value === 'number') {
-    return value
-  }
-  if (typeof value === 'string') {
-    const parsed = Number(value)
-    return Number.isFinite(parsed) ? parsed : 999
-  }
-  return 999
-}
-
-function resolveAccent(
-  accent: Array<{ color?: ProjectAccent }> | undefined,
-  fallback?: ProjectAccent,
-): ProjectAccent {
-  return accent?.[0]?.color ?? fallback ?? 'mint'
-}
-
-function isSkillCategoryKey(value: string | undefined): value is SkillCategoryKey {
-  return value === 'frontend' || value === 'backend' || value === 'tools'
-}
 
 export const getStoryblokApi = storyblokInit({
   accessToken: process.env.STORYBLOK_DELIVERY_API_TOKEN,
@@ -62,34 +26,54 @@ export const getStoryblokApi = storyblokInit({
 })
 
 export const getProfile = cache(async function getProfile(): Promise<Profile> {
-  const api = getStoryblokApi()
-  const { data } = await api.get('cdn/stories/config/profile', {
-    version,
-  })
+  try {
+    const api = getStoryblokApi()
+    const { data } = await api.get('cdn/stories/config/profile', {
+      version,
+    })
 
-  const c = data.story.content
-  return {
-    name: c.name,
-    email: c.email,
-    github: c.github,
-    linkedin: c.linkedin,
-    location: c.location ?? undefined,
-    stats: {
-      yearsValue: c.stats_years ?? '',
-      projectsValue: c.stats_projects ?? '',
-      passionValue: c.stats_passion ?? '',
-    },
+    const c = data.story.content
+    return {
+      name: c.name,
+      email: c.email,
+      github: c.github,
+      linkedin: c.linkedin,
+      location: c.location ?? undefined,
+      stats: {
+        yearsValue: c.stats_years ?? '',
+        projectsValue: c.stats_projects ?? '',
+        passionValue: c.stats_passion ?? '',
+      },
+    }
+  } catch (err) {
+    console.error('[storyblok] getProfile failed:', err)
+    throw new Error('Failed to load profile data. Please check the Storyblok configuration.')
   }
 })
+
+const emptyHomePage: HomePageContent = {
+  hero: { badge: '', title: '', description: '' },
+  about: { bio: { type: 'doc', content: [] } as StoryblokRichTextNode<unknown>, features: [] },
+  skills: undefined,
+}
 
 export const getHomePage = cache(async function getHomePage(
   locale: string,
 ): Promise<HomePageContent> {
   const api = getStoryblokApi()
-  const { data } = await api.get('cdn/stories/home', {
-    version,
-    language: getLanguage(locale),
-  })
+  const result = await api
+    .get('cdn/stories/home', {
+      version,
+      language: getLanguage(locale),
+    })
+    .catch((err: unknown) => {
+      console.error('[storyblok] getHomePage failed:', err)
+      return null
+    })
+
+  if (!result) return emptyHomePage
+
+  const { data } = result
 
   const body = data.story.content.body ?? []
   const heroBlock = body.find(
@@ -173,12 +157,21 @@ export const getExperiences = cache(async function getExperiences(
   locale: string,
 ): Promise<Experience[]> {
   const api = getStoryblokApi()
-  const { data } = await api.get('cdn/stories', {
-    version,
-    language: getLanguage(locale),
-    starts_with: 'experience/',
-    per_page: 100,
-  })
+  const result = await api
+    .get('cdn/stories', {
+      version,
+      language: getLanguage(locale),
+      starts_with: 'experience/',
+      per_page: 100,
+    })
+    .catch((err: unknown) => {
+      console.error('[storyblok] getExperiences failed:', err)
+      return null
+    })
+
+  if (!result) return []
+
+  const { data } = result
 
   type SortableExperience = Experience & { sortOrder: number }
 
@@ -219,12 +212,21 @@ export const getExperiences = cache(async function getExperiences(
 
 export const getProjects = cache(async function getProjects(locale: string): Promise<Project[]> {
   const api = getStoryblokApi()
-  const { data } = await api.get('cdn/stories', {
-    version,
-    language: getLanguage(locale),
-    starts_with: 'project/',
-    per_page: 100,
-  })
+  const result = await api
+    .get('cdn/stories', {
+      version,
+      language: getLanguage(locale),
+      starts_with: 'project/',
+      per_page: 100,
+    })
+    .catch((err: unknown) => {
+      console.error('[storyblok] getProjects failed:', err)
+      return null
+    })
+
+  if (!result) return []
+
+  const { data } = result
 
   return (
     (data.stories ?? []) as Array<{

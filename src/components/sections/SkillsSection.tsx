@@ -1,7 +1,6 @@
 import { Code2, Database, Wrench, Briefcase, Rocket, GraduationCap } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
-import { skills } from '@/data/skills'
 import type { Locale } from '@/i18n/routing'
 import type { Profile } from '@/types/profile'
 import type { SkillCategoryContent, SkillCategoryKey, SkillsSectionContent } from '@/types/skill'
@@ -97,10 +96,10 @@ export async function SkillsSection({
         key,
         title: t(key),
         description: t(categoryConfig[key].descKey),
-        skills: skills[key],
+        skills: [],
       }))
 
-  const extraSkills = skillsContent?.extra.length ? skillsContent.extra : skills.extra
+  const extraSkills = skillsContent?.extra.length ? skillsContent.extra : []
   const sectionSubtitle = skillsContent?.subtitle || t('sectionSubtitle')
 
   return (
