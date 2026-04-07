@@ -17,3 +17,15 @@ test.describe('Locale routing', () => {
     await expect(page.getByTestId('navigation')).toBeVisible()
   })
 })
+
+test.describe('API routing', () => {
+  test('/api/chat is not redirected by locale proxy', async ({ request }) => {
+    const response = await request.post('/api/chat', {
+      data: { messages: [], locale: 'en' },
+    })
+    // Should reach the route handler (not a locale 307 redirect)
+    // 4xx is acceptable (missing GROQ key in test env), 307 is not
+    expect(response.status()).not.toBe(307)
+    expect(response.url()).not.toMatch(/\/en\/api\/chat/)
+  })
+})
