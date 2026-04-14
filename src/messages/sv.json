@@ -1,0 +1,94 @@
+{
+  "navigation": {
+    "about": "Om mig",
+    "experience": "Erfarenhet",
+    "skills": "Kompetenser",
+    "projects": "Projekt",
+    "contact": "Kontakt",
+    "switchLanguage": "EN",
+    "openMenu": "Öppna navigationsmenyn",
+    "closeMenu": "Stäng navigationsmenyn",
+    "languageMenu": "Välj språk",
+    "followLabel": "Följ mig"
+  },
+  "hero": {
+    "ariaLabel": "Introduktion",
+    "badge": "Välkommen till min värld",
+    "greeting": "Hej, jag heter",
+    "title": "Senior Full-Stack-ingenjör",
+    "description": "Jag bygger prestandaoptimerade, tillgängliga webbapplikationer med fokus på ren arkitektur och bra användarupplevelse.",
+    "ctaProjects": "Se projekt",
+    "ctaContact": "Kontakta mig",
+    "statsYears": "År",
+    "statsProjects": "Projekt",
+    "statsPassion": "Passion"
+  },
+  "about": {
+    "sectionTitle": "Om Mig",
+    "imageAlt": "Profilfoto av Nina Li"
+  },
+  "experience": {
+    "sectionTitle": "Erfarenhet",
+    "sectionSubtitle": "Min professionella resa inom webbutveckling och teknologi.",
+    "present": "Nuvarande",
+    "currentPosition": "Nuvarande Position",
+    "responsibilitiesLabel": "Ansvarsområden",
+    "technologiesLabel": "Teknologier",
+    "technologiesUsed": "Använda teknologier"
+  },
+  "skills": {
+    "sectionTitle": "Kompetenser",
+    "sectionSubtitle": "Teknologier och verktyg jag använder för att skapa digitala lösningar.",
+    "frontend": "Frontend-utveckling",
+    "backend": "Backend-utveckling",
+    "tools": "Verktyg & Arbetsflöde",
+    "frontendDesc": "Bygger vackra och responsiva användargränssnitt",
+    "backendDesc": "Skapar robusta server-applikationer",
+    "toolsDesc": "Moderna utvecklingsverktyg och metoder",
+    "statYears": "År av Erfarenhet",
+    "statProjects": "Levererade Projekt",
+    "statLearning": "Ständigt Lärande",
+    "moreLabel": "Och många fler..."
+  },
+  "projects": {
+    "sectionTitle": "Projekt",
+    "sectionSubtitle": "Ett urval av projekt jag har arbetat med — varje projekt representerar en unik utmaning och lösning.",
+    "viewProject": "Se projekt",
+    "viewSource": "Källkod",
+    "technologiesUsed": "Använda teknologier"
+  },
+  "contact": {
+    "sectionTitle": "Kontakta Mig",
+    "sectionSubtitle": "Hör gärna av dig — jag tar gärna kontakt.",
+    "letsTalkHeading": "Låt oss prata!",
+    "letsTalkDesc": "Jag är alltid öppen för nya möjligheter och samarbeten. Kontakta mig via någon av mina kanaler.",
+    "emailLabel": "E-post",
+    "locationLabel": "Plats",
+    "followLabel": "Följ mig online",
+    "nameLabel": "Namn",
+    "namePlaceholder": "Ditt namn",
+    "emailPlaceholder": "din@epost.se",
+    "messageLabel": "Meddelande",
+    "messagePlaceholder": "Lämna ett meddelande…",
+    "submit": "Skicka meddelande",
+    "successMessage": "Tack för ditt meddelande! Jag återkommer snart."
+  },
+  "footer": {
+    "rights": "Alla rättigheter förbehållna.",
+    "tagline": "Skapad med passion • Designad för bra upplevelser"
+  },
+  "chat": {
+    "fabLabel": "AI-assistent online",
+    "openLabel": "Öppna AI-chattassistenten",
+    "closeLabel": "Stäng chatten",
+    "headerTitle": "AI-assistent",
+    "headerSubtitle": "Drivs av Groq · Fråga mig vad som helst",
+    "welcomeMessage": "Hej! Jag är Ninas AI-assistent. Fråga mig om hennes erfarenhet, projekt eller kompetenser!",
+    "suggestedLabel": "Föreslagna frågor:",
+    "q1": "Vilka tekniker använder hon?",
+    "q2": "Har hon erfarenhet av svenska projekt?",
+    "q3": "Är hon öppen för nya möjligheter?",
+    "placeholder": "Fråga mig vad som helst…",
+    "sendLabel": "Skicka meddelande"
+  }
+}

@@ -1,0 +1,147 @@
+import { createElement } from 'react'
+import type { ReactElement } from 'react'
+import { Code2, Heart, Palette, Rocket } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
+import { getTranslations } from 'next-intl/server'
+import { richTextResolver } from '@storyblok/richtext'
+import type { FeatureCardColor, FeatureCardIcon } from '@/types/about'
+import type { HomeAboutContent } from '@/types/home'
+import type { Profile } from '@/types/profile'
+import type { Locale } from '@/i18n/routing'
+import { getInitials } from '@/lib/utils'
+import { SectionWrapper } from '@/components/ui/SectionWrapper'
+
+const iconMap: Record<FeatureCardIcon, LucideIcon> = {
+  code: Code2,
+  palette: Palette,
+  rocket: Rocket,
+  heart: Heart,
+}
+
+const colorMap: Record<FeatureCardColor, string> = {
+  primary: 'bg-primary text-white',
+  yellow: 'bg-yellow text-foreground',
+  lavender: 'bg-lavender text-white',
+}
+
+function resolveFeatureColor(feature: HomeAboutContent['features'][number]): FeatureCardColor {
+  return feature.accent?.[0]?.color ?? feature.color ?? 'primary'
+}
+
+export async function AboutSection({
+  locale,
+  profile,
+  about,
+}: {
+  locale: Locale
+  profile: Profile
+  about: HomeAboutContent
+}) {
+  const t = await getTranslations({ locale, namespace: 'about' })
+  const bioContent = richTextResolver<ReactElement>({
+    renderFn: (tag, attrs, children) => createElement(tag, attrs, children),
+    keyedResolvers: true,
+  }).render(about.bio)
+
+  return (
+    <SectionWrapper
+      id="about"
+      aria-label={t('sectionTitle')}
+      className="bg-white relative overflow-hidden"
+    >
+      {/* Full-width SVG wave — w-screen + -translate-x-1/2 escapes max-w-6xl,
+          clipped by the section's overflow-hidden. Matches Figma's soft teal wave. */}
+      <div
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-screen h-32 opacity-15 pointer-events-none"
+        aria-hidden="true"
+      >
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-full">
+          <path
+            d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+            opacity=".25"
+            fill="var(--color-primary)"
+          />
+          <path
+            d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
+            opacity=".5"
+            fill="var(--color-primary)"
+          />
+          <path
+            d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
+            fill="var(--color-primary)"
+          />
+        </svg>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-16 items-center">
+        {/* Left — image placeholder */}
+        <div className="relative order-2 md:order-1 animate-fade-in-left">
+          <div className="relative">
+            {/* Avatar card */}
+            <div className="aspect-4/5 rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white bg-linear-to-br from-primary to-mint-light flex items-center justify-center">
+              <span
+                className="text-white text-8xl font-bold select-none"
+                aria-label={t('imageAlt')}
+              >
+                {getInitials(profile.name)}
+              </span>
+            </div>
+
+            {/* Decorative shapes */}
+            <div
+              className="absolute -top-6 -right-6 w-40 h-40 bg-yellow rounded-4xl -z-10 shadow-lg rotate-12 pointer-events-none"
+              aria-hidden="true"
+            />
+            <div
+              className="absolute -bottom-6 -left-6 w-32 h-32 bg-primary rounded-4xl -z-10 shadow-lg -rotate-12 pointer-events-none"
+              aria-hidden="true"
+            />
+
+            {/* Floating Heart badge */}
+            <div
+              className="absolute top-8 -right-4 bg-white rounded-2xl p-4 shadow-xl animate-float"
+              aria-hidden="true"
+            >
+              <Heart className="text-lavender" size={32} fill="currentColor" />
+            </div>
+          </div>
+        </div>
+
+        {/* Right — content */}
+        <div className="order-1 md:order-2 animate-fade-in-right">
+          <h2 className="text-5xl md:text-6xl mb-6 text-foreground font-semibold">
+            {t('sectionTitle')}
+          </h2>
+
+          <div className="text-lg text-foreground/70 mb-10 leading-relaxed prose prose-p:mb-4 prose-p:last:mb-0">
+            {bioContent}
+          </div>
+
+          {/* Feature cards */}
+          <div className="space-y-5">
+            {about.features.map((feature) => {
+              const Icon = iconMap[feature.icon] ?? Code2
+              const colorClass = colorMap[resolveFeatureColor(feature)] ?? 'bg-primary text-white'
+              return (
+                <div
+                  key={feature._uid}
+                  className="group flex gap-4 items-start p-5 bg-cream rounded-2xl hover:shadow-lg transition-all hover:-translate-y-1"
+                >
+                  <div
+                    className={`shrink-0 w-14 h-14 ${colorClass} rounded-2xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform`}
+                  >
+                    <Icon size={28} aria-hidden="true" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl mb-1 text-foreground font-medium">{feature.title}</h3>
+                    <p className="text-foreground/60 leading-relaxed">{feature.description}</p>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+    </SectionWrapper>
+  )
+}

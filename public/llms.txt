@@ -1,0 +1,51 @@
+# Nina Li — Full-Stack Engineer
+
+Full-stack software engineer specialising in modern web applications with a focus on Next.js, TypeScript, and performance optimisation. Based in Stockholm, Sweden.
+
+## Current Role
+
+Software Engineer (Intern), Cabonline Group AB — Stockholm  
+Working on large-scale web platform consolidation and modern frontend architecture.
+
+## Core Skills
+
+Frontend:
+- Next.js (App Router), React, TypeScript, Tailwind CSS
+- Core Web Vitals optimisation (LCP, CLS, INP)
+- Accessible UI (WCAG AA)
+- Headless CMS integration (Storyblok)
+
+Backend:
+- Node.js, Express, REST APIs
+- GraphQL (Apollo)
+- Real-time systems with Socket.io
+- Python
+
+Cloud & DevOps:
+- Microsoft Azure, Vercel
+- GitHub Actions, CI/CD pipelines
+
+Engineering Practices:
+- Spec-Driven Development (SDD)
+- Performance-focused architecture
+- Reusable component design
+
+## Notable Work
+
+- Contributed to migration of multiple legacy brand websites into a unified Next.js architecture
+- Improved Core Web Vitals by refactoring data-fetching logic and eliminating redundant API requests
+- Implemented CDN-based image optimisation to reduce LCP
+- Developed features for a production passenger mobile application using React Native
+- Built a full-stack real-time collaborative code editor (Node.js, Socket.io, GraphQL, MongoDB)
+- Experience deploying applications to cloud environments (Azure, Vercel)
+
+## Interests
+
+- Serverless and edge-first architectures
+- High-performance web applications
+- Scalable full-stack product development
+
+## Links
+
+GitHub: https://github.com/ninalining
+LinkedIn: https://www.linkedin.com/in/nina-li-356b46bb/

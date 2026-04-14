@@ -1,0 +1,94 @@
+{
+  "navigation": {
+    "about": "About",
+    "experience": "Experience",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact",
+    "switchLanguage": "SV",
+    "openMenu": "Open navigation menu",
+    "closeMenu": "Close navigation menu",
+    "languageMenu": "Select language",
+    "followLabel": "Follow me"
+  },
+  "hero": {
+    "ariaLabel": "Introduction",
+    "badge": "Welcome to my world",
+    "greeting": "Hi, I'm",
+    "title": "Senior Full-Stack Engineer",
+    "description": "I build performant, accessible web applications with a focus on clean architecture and great user experience.",
+    "ctaProjects": "View Projects",
+    "ctaContact": "Get in Touch",
+    "statsYears": "Years",
+    "statsProjects": "Projects",
+    "statsPassion": "Passion"
+  },
+  "about": {
+    "sectionTitle": "About Me",
+    "imageAlt": "Profile photo of Nina Li"
+  },
+  "experience": {
+    "sectionTitle": "Experience",
+    "sectionSubtitle": "My professional journey in web development and technology.",
+    "present": "Present",
+    "currentPosition": "Current Position",
+    "responsibilitiesLabel": "Responsibilities",
+    "technologiesLabel": "Technologies",
+    "technologiesUsed": "Technologies used"
+  },
+  "skills": {
+    "sectionTitle": "Skills",
+    "sectionSubtitle": "Technologies and tools I use to create digital solutions.",
+    "frontend": "Frontend Development",
+    "backend": "Backend Development",
+    "tools": "Tools & Workflow",
+    "frontendDesc": "Building beautiful and responsive user interfaces",
+    "backendDesc": "Creating robust server-side applications",
+    "toolsDesc": "Modern development tools and practices",
+    "statYears": "Years of Experience",
+    "statProjects": "Projects Delivered",
+    "statLearning": "Always Learning",
+    "moreLabel": "And many more..."
+  },
+  "projects": {
+    "sectionTitle": "Projects",
+    "sectionSubtitle": "A selection of projects I've worked on — each representing a unique challenge and solution.",
+    "viewProject": "View Project",
+    "viewSource": "Source Code",
+    "technologiesUsed": "Technologies used"
+  },
+  "contact": {
+    "sectionTitle": "Contact",
+    "sectionSubtitle": "Feel free to reach out — I'd love to connect.",
+    "letsTalkHeading": "Let's Talk!",
+    "letsTalkDesc": "I'm always open to new opportunities and collaborations. Reach out through any of my channels.",
+    "emailLabel": "Email",
+    "locationLabel": "Location",
+    "followLabel": "Follow me online",
+    "nameLabel": "Name",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "your@email.com",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Leave a message…",
+    "submit": "Send Message",
+    "successMessage": "Thank you for your message! I'll get back to you soon."
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "tagline": "Built with passion • Designed for great experiences"
+  },
+  "chat": {
+    "fabLabel": "AI Assistant Online",
+    "openLabel": "Open AI chat assistant",
+    "closeLabel": "Close chat",
+    "headerTitle": "AI Assistant",
+    "headerSubtitle": "Powered by Groq · Ask me anything",
+    "welcomeMessage": "Hi! I'm Nina's AI assistant. Ask me about her experience, projects, or skills!",
+    "suggestedLabel": "Suggested questions:",
+    "q1": "What's her tech stack?",
+    "q2": "Any Swedish-language project experience?",
+    "q3": "Is she open to new opportunities?",
+    "placeholder": "Ask me anything…",
+    "sendLabel": "Send message"
+  }
+}
