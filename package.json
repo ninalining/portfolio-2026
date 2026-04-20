@@ -20,7 +20,7 @@
     "@ai-sdk/react": "^3.0.148",
     "@storyblok/react": "^6.1.2",
     "@storyblok/richtext": "^4.1.2",
-    "ai": "^6.0.146",
+    "ai": "^6.0.168",
     "clsx": "^2.1.1",
     "lucide-react": "^0.577.0",
     "motion": "^12.36.0",
