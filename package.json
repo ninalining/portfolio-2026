@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@ai-sdk/groq": "^3.0.33",
-    "@ai-sdk/react": "^3.0.148",
+    "@ai-sdk/react": "^3.0.170",
     "@storyblok/react": "^6.1.2",
     "@storyblok/richtext": "^4.1.2",
     "ai": "^6.0.146",
